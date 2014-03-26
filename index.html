@@ -110,7 +110,7 @@
 
 	function movePlayers(players) {
 		//clearCanvas();
-		for(var p in players) {
+		for(var id in players) {
 
 		//	var c = document.getElementById("myMap");
 		//	var ctx = c.getContext("2d");
@@ -118,8 +118,8 @@
 		//	ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
 
 			if (document.getElementById(id)) {
-				document.getElementById(p).style.top  = players[p]['y'];
-    			document.getElementById(p).style.left = players[p]['x'];
+				document.getElementById(id).style.top  = players[id]['y'];
+    			document.getElementById(id).style.left = players[id]['x'];
 			}
 
       	}
