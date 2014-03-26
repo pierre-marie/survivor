@@ -25,9 +25,9 @@
 </form> -->
 
 <script src="./KeyboardJS-master/keyboard.js"></script>
-<script src="http://localhost:8081/socket.io/socket.io.js"></script>
+<script src="http://91.121.137.144:80/socket.io/socket.io.js"></script>
 <script>
-	var socket = io.connect('http://localhost:8081');
+	var socket = io.connect('http://91.121.137.144:80');
 
   	socket.on('connect', function () {
   		socket.send('hello');
