@@ -1,24 +1,14 @@
 
 var players = {};
 var playersUpdated = false;
-//var redis = require('redis').createClient();
-var io = require('socket.io').listen(80);
+var app = require('express')()
+  , server = require('http').createServer(app)
+  , io = require('socket.io').listen(server);
 
-
-//redis.on("error", function (err) {
-//  console.log("Error " + err);
-//});
-//redis.on("connect", function () {
-//  console.log("Connect");
-//});
-//redis.on("ready", function () {
-//  console.log("ready");
-//	var val = redis.get('id', function(err, val)
-//	{
-//		console.log('val');
-//		console.log(val);	
-//	});
-//});
+server.listen(80);
+app.get('/', function (req, res) {
+  res.sendfile(__dirname + '/index.html');
+});
 
 io.sockets.on('connection', function (socket) {
 
