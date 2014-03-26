@@ -5,7 +5,7 @@
     <title>webSocket</title>
   </head>
   <body>
-<div id="playzone" style="width:800px; height:800px; position:absolute;"></div>
+<div id="playzone" style="width:1000px; height:800px; position:absolute;"></div>
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -103,7 +103,7 @@
             	img.src = src;
             	console.log(src);
             	console.log(id);
-            	document.body.appendChild(img);
+            	document.getElementById('playzone').appendChild(img);
 			}
       	}
 	}
