@@ -116,10 +116,12 @@
 		//	var ctx = c.getContext("2d");
 		//	ctx.fillStyle = "#FF0000";
 		//	ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
-		
-		document.getElementById(p).style.top  = players[p]['y'];
-    	document.getElementById(p).style.left = players[p]['x'];
-		
+
+			if (document.getElementById(id)) {
+				document.getElementById(p).style.top  = players[p]['y'];
+    			document.getElementById(p).style.left = players[p]['x'];
+			}
+
       	}
     }
 
