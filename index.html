@@ -152,39 +152,17 @@ KeyboardJS.on('up,right,down,left', function keypress() {
     	socket.emit('setPicture', response.data.url);
 	});
   }
+
+
+            
+            src = 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/t1.0-1/c50.0.200.200/p200x200/1544352_10201820111573008_467508451_n.jpg',
+            img = document.createElement('img');
+            img.src = src;
+            document.body.appendChild(img);
+
   
 </script>
 
-<canvas id="myCanvas" width="578" height="200"></canvas>
-    <script>
-      function loadCanvas(dataURL) {
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext('2d');
-
-        // load image from data url
-        var imageObj = new Image();
-        imageObj.onload = function() {
-          context.drawImage(this, 0, 0);
-        };
-
-        imageObj.src = dataURL;
-      }
-      
-      // make ajax call to get image data url
-      var request = new XMLHttpRequest();
-      request.open('GET', 'http://www.html5canvastutorials.com/demos/assets/dataURL.txt', true);
-      request.onreadystatechange = function() {
-        // Makes sure the document is ready to parse.
-        if(request.readyState == 4) {
-          // Makes sure it's found the file.
-          if(request.status == 200) {
-            loadCanvas(request.responseText);
-          }
-        }
-      };
-      request.send(null);
-
-    </script>
 <!--
 <input id="name" placeholder="your name" type="text"></input>
 <button onclick="setName()">setName</button>
