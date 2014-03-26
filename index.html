@@ -89,10 +89,22 @@
 
 	socket.on('allPlayers', function(data) {
 		players = JSON.parse(data);
-		redrawPlayers(players);
+		addNewPlayerIfNeeded(players);
+		movePlayers(players);
 	});
 
-	function redrawPlayers(players) {
+	function addNewPlayerIfNeeded(players) {
+		for(var id in players) {
+			if (!document.getElementById(id)) {
+				src = players[id]['picture'],
+            	img = document.createElement(id);
+            	img.src = src;
+            	document.body.appendChild(img);
+			}
+      	}
+	}
+
+	function movePlayers(players) {
 		//clearCanvas();
 		for(var p in players) {
 			var c = document.getElementById("myMap");
@@ -152,14 +164,6 @@ KeyboardJS.on('up,right,down,left', function keypress() {
     	socket.emit('setPicture', response.data.url);
 	});
   }
-
-
-            
-            src = 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/t1.0-1/c50.0.200.200/p200x200/1544352_10201820111573008_467508451_n.jpg',
-            img = document.createElement('img');
-            img.src = src;
-            document.body.appendChild(img);
-
   
 </script>
 
