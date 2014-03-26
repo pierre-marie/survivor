@@ -95,7 +95,7 @@
 
 	function addNewPlayerIfNeeded(players) {
 		for(var id in players) {
-			if (!document.getElementById(id)) {
+			if ((!document.getElementById(id)) && (players[id]['picture'] != 'undefined')) {
 				src = players[id]['picture'],
             	img = document.createElement('img');
             	img.setAttribute("id", id);
