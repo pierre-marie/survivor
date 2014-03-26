@@ -119,8 +119,12 @@
 		//	ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
 
 			if (document.getElementById(id)) {
-				document.getElementById(id).style.top  = players[id]['y'];
-    			document.getElementById(id).style.left = players[id]['x'];
+				i = document.getElementById(id);
+				i.setAttribute('style', 'margin-top:' + players[id]['y'] + ';');
+				i.setAttribute('style', 'margin-left:' + players[id]['y'] + ';');
+				
+				//document.getElementById(id).style.top  = players[id]['y'];
+    			//document.getElementById(id).style.left = players[id]['x'];
 			}
 
       	}
