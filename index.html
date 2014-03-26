@@ -99,13 +99,17 @@
 	function addNewPlayerIfNeeded(players) {
 		for(var id in players) {
 			if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
+				
 				src = players[id]['picture'],
+            	
             	img = document.createElement('img');
-            	img.setAttribute('id', id);
             	img.src = src;
-            	console.log(src);
-            	console.log(id);
-            	document.getElementById('playzone').appendChild(img);
+
+				div = document.createElement('div');
+				div.setAttribute('id', id);
+
+            	document.getElementById('playzone').appendChild(div);
+            	document.getElementById(id).appendChild(img);
 			}
       	}
 	}
