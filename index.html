@@ -10,18 +10,10 @@
 <script>
 
 fbAsyncInit = function() {
-    FB.init({
-      appId      : 'YOUR_APP_ID', // App ID
-      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
 
-    FB.api('/me', {fields: 'last_name'}, function(response) {
+  FB.api('/me', {fields: 'last_name'}, function(response) {
   		console.log(response);
 	});
-  };
 
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
