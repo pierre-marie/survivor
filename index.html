@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>webSocket</title>
+  </head>
+  <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=427095730769334";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
+
+<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
+<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+</form> -->
+
+<script src="./KeyboardJS-master/keyboard.js"></script>
+<script src="http://localhost:8081/socket.io/socket.io.js"></script>
+<script>
+	var socket = io.connect('http://localhost:8081');
+
+  	socket.on('connect', function () {
+  		socket.send('hello');
+  	});
+
+	socket.on('message', function(message) {
+    });
+
+    function setName() {
+    	socket.send('setName/' + document.getElementById("name").value);
+    }
+
+    function pokeEveryone() {
+    	socket.send('pokeEveryone');
+    }
+
+	function clearCanvas() {
+		canvas = document.getElementById("myMap");
+		ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
+
+	socket.on('allPlayers', function(data) {
+		players = JSON.parse(data);
+		redrawPlayers(players);
+	});
+
+	function redrawPlayers(players) {
+		clearCanvas();
+		for(var p in players) {
+			var c = document.getElementById("myMap");
+			var ctx = c.getContext("2d");
+			ctx.fillStyle = "#FF0000";
+			ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
+      	}
+    }
+
+KeyboardJS.on('up,right,down,left', function keypress() {
+
+	var activeKeys = KeyboardJS.activeKeys();
+    keys = {left:false, right:false, up:false, down:false};
+
+    if(activeKeys.indexOf('left') > -1) {
+		keys.left = true;
+    }
+    if(activeKeys.indexOf('up') > -1) {
+		keys.up = true;
+    }
+    if(activeKeys.indexOf('right') > -1) {
+		keys.right = true;
+    }
+	if(activeKeys.indexOf('down') > -1) {
+		keys.down = true;
+    }
+  	socket.emit('keyboardPress', keys);
+ 
+}, function keyrelease(){
+	var activeKeys = KeyboardJS.activeKeys();
+    keys = {left:false, right:false, up:false, down:false};
+
+    if(activeKeys.indexOf('left') > -1) {
+		keys.left = true;
+    }
+    if(activeKeys.indexOf('up') > -1) {
+		keys.up = true;
+    }
+    if(activeKeys.indexOf('right') > -1) {
+		keys.right = true;
+    }
+	if(activeKeys.indexOf('down') > -1) {
+		keys.down = true;
+    }
+  	socket.emit('keyboardRelease', keys);
+	
+});
+
+</script>
+    
+<input id="name" placeholder="your name" type="text"></input>
+<button onclick="setName()">setName</button>
+<button onclick="pokeEveryone()">pokeEveryone</button>
+<canvas id="myMap" width="800" height="600" style="border:1px solid #c3c3c3;">Your browser does not support the HTML5 canvas tag.</canvas>
+  </body>
+</html>
