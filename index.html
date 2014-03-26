@@ -100,7 +100,6 @@
 				src = players[id]['picture'],
             	img = document.createElement('img');
             	img.setAttribute('id', id);
-            	img.setAttribute('style', 'position:absolute;');
             	img.src = src;
             	console.log(src);
             	console.log(id);
@@ -120,8 +119,7 @@
 
 			if (document.getElementById(id)) {
 				i = document.getElementById(id);
-				i.setAttribute('style', 'margin-top:' + players[id]['y'] + ';');
-				i.setAttribute('style', 'margin-left:' + players[id]['y'] + ';');
+				i.setAttribute('style', 'margin-top:' + players[id]['y'] + '; margin-left:' + players[id]['x'] + '; position:absolute;');
 				
 				//document.getElementById(id).style.top  = players[id]['y'];
     			//document.getElementById(id).style.left = players[id]['x'];
