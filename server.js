@@ -26,15 +26,15 @@ io.sockets.on('connection', function (socket) {
 			players[socket.id]['y'] = 0.0;
 		}
 
-		if ((res.length > 1) && (res[0] == 'setName')) {
-			players[socket.id]['name'] = res[1];
-			console.log(players);
-		}
-		if (res[0] == 'pokeEveryone') {
-			socket.broadcast.emit('message', 'poke');
-		}
-
     });
+
+	socket.on('setName', function(message) {
+		players[socket.id]['name'] = message;
+	});
+
+	socket.on('setPicture', function(message) {
+		players[socket.id]['picture'] = message;
+	});
 
 	setInterval(function updatePos() {
 		for(var p in players) {

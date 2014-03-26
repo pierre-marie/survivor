@@ -81,14 +81,6 @@
 	socket.on('message', function(message) {
     });
 
-    function setName() {
-    	socket.send('setName/' + document.getElementById("name").value);
-    }
-
-    function pokeEveryone() {
-    	socket.send('pokeEveryone');
-    }
-
 	function clearCanvas() {
 		canvas = document.getElementById("myMap");
 		ctx = canvas.getContext("2d");
@@ -149,15 +141,15 @@ KeyboardJS.on('up,right,down,left', function keypress() {
 	
 });
 
-// Here we run a very simple test of the Graph API after login is successful. 
+  // Here we run a very simple test of the Graph API after login is successful. 
   // This testAPI() function is only called in those cases. 
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
+		socket.emit('setName', response.name);
     });
     FB.api("/me/picture?width=180&height=180",  function(response) {
-        console.log(response.data.url);
+    	socket.emit('setPicture', response.data.url);
 	});
   }
   
