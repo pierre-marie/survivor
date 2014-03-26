@@ -99,7 +99,8 @@
 			if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
 				src = players[id]['picture'],
             	img = document.createElement('img');
-            	img.setAttribute("id", id);
+            	img.setAttribute('id', id);
+            	img.setAttribute('style', 'position:absolute;');
             	img.src = src;
             	console.log(src);
             	console.log(id);
