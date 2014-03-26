@@ -96,9 +96,11 @@
 	function addNewPlayerIfNeeded(players) {
 		for(var id in players) {
 			if (!document.getElementById(id)) {
-				src = players[id]['picture'],
-            	img = document.createElement(id);
+				var src = players[id]['picture'],
+            	var img = document.createElement(id);
             	img.src = src;
+            	console.log(src);
+            	console.log(id);
             	document.body.appendChild(img);
 			}
       	}
@@ -106,12 +108,12 @@
 
 	function movePlayers(players) {
 		//clearCanvas();
-		for(var p in players) {
-			var c = document.getElementById("myMap");
-			var ctx = c.getContext("2d");
-			ctx.fillStyle = "#FF0000";
-			ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
-      	}
+		//for(var p in players) {
+		//	var c = document.getElementById("myMap");
+		//	var ctx = c.getContext("2d");
+		//	ctx.fillStyle = "#FF0000";
+		//	ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
+      	//}
     }
 
 KeyboardJS.on('up,right,down,left', function keypress() {
