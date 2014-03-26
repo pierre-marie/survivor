@@ -54,18 +54,6 @@
    js.src = "//connect.facebook.net/en_US/all.js";
    ref.parentNode.insertBefore(js, ref);
   }(document));
-
-  // Here we run a very simple test of the Graph API after login is successful. 
-  // This testAPI() function is only called in those cases. 
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-    });
-    FB.api("/me/picture?width=180&height=180",  function(response) {
-        console.log(response.data.url);
-	});
-  }
 </script>
 
 <!--
@@ -161,6 +149,18 @@ KeyboardJS.on('up,right,down,left', function keypress() {
 	
 });
 
+// Here we run a very simple test of the Graph API after login is successful. 
+  // This testAPI() function is only called in those cases. 
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.');
+    });
+    FB.api("/me/picture?width=180&height=180",  function(response) {
+        console.log(response.data.url);
+	});
+  }
+  
 </script>
 <!--
 <input id="name" placeholder="your name" type="text"></input>
