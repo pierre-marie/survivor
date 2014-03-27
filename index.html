@@ -52,8 +52,8 @@
 </script>
   <script>
 	  		var players;
+			var playersSprites = new THREE.Object3D();
 
-			var group = new THREE.Object3D();
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 			var renderer = new THREE.WebGLRenderer();
@@ -63,9 +63,9 @@
 
 			var render = function () {
 
-			requestAnimationFrame(render);
+				requestAnimationFrame(render);
 
-			for(var id in players) {
+				for(var id in players) {
 					if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
 
 						div = document.createElement('div');
@@ -77,18 +77,21 @@
     		            var sprite = new THREE.Sprite( material );
 		                players[id]['sprite'] = sprite;
 		                scene.add(sprite);
-		                group.add(sprite);
+		                playersSprites.add(sprite);
 		                console.log('Add a sprite to scene');
 					}
       			}
       			
-      			for ( var c = 0; c < group.children.length; c ++ ) {
+      			for (var c = 0; c < playersSprites.children.length; c ++ ) {
+			      		
+			      		//if (object.name === 'q10') {
+            				// do what you want with it.
+    					//}		
       				console.log('Rotate a sprite in scene');
-					var sprite = group.children[c];
+					var sprite = playersSprites.children[c];
 					sprite.rotation += 0.1;
 				}
 
-				
 				renderer.render(scene, camera);
 			};
 
