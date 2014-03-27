@@ -109,8 +109,10 @@
 			    newPlayer.position.x = 400;
 			    newPlayer.position.y = 300;
 
-			    newPlayer.scale.x = 0.5;
-			    newPlayer.scale.y = 0.5;
+			    newPlayer.scale.x = 0.3;
+			    newPlayer.scale.y = 0.3;
+
+				newPlayer.name = id;
 
 			    stage.addChild(newPlayer);
 			}
@@ -119,6 +121,12 @@
 
     function animate() {
         //bunny.rotation += 0.01;
+        
+        for(var i = 0; i < stage.children.length; i++) {
+			stage.children[i].position.x = players[stage.children[i].name]['x'];
+			stage.children[i].position.y = players[stage.children[i].name]['y'];
+		}
+        
 		updateLocalPlayers();
         renderer.render(stage);
         requestAnimationFrame(animate);
