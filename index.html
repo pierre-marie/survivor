@@ -188,6 +188,7 @@ KeyboardJS.on('up,right,down,left', function keypress() {
 	if(activeKeys.indexOf('down') > -1) {
 		keys.down = true;
     }
+    console.log('emit keyboard press');
   	socket.emit('keyboardPress', keys);
  
 }, function keyrelease(){
@@ -206,6 +207,7 @@ KeyboardJS.on('up,right,down,left', function keypress() {
 	if(activeKeys.indexOf('down') > -1) {
 		keys.down = true;
     }
+    console.log('emit keyboard release');
   	socket.emit('keyboardRelease', keys);
 	
 });
