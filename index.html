@@ -4,7 +4,7 @@
   <head>
     <title>webSocket</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script src="./three.min.js"></script>
+	<script src="./pixi.js"></script>
     <style type="text/css">
     body {
 				background-color: #f0f0f0;
@@ -68,81 +68,33 @@
   <script>
 // declare a bunch of variable we will need later
 var players;
-var startTime	= Date.now();
-var container;
-var camera, scene, renderer, stats;
-var cube;
+// You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
+    var renderer = new PIXI.WebGLRenderer(800, 600);
 
-// initialiaze everything
-init();
-// make it move			
-animate();
+    document.body.appendChild(renderer.view);
 
-// ## Initialize everything
-function init() {
+    var stage = new PIXI.Stage;
 
-	// create the camera
-	camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-	camera.position.z = 350;
+    var bunnyTexture = PIXI.Texture.fromImage("texture.png");
+    var bunny = new PIXI.Sprite(bunnyTexture);
 
-	// create the Scene
-	scene = new THREE.Scene();
+    bunny.position.x = 400;
+    bunny.position.y = 300;
 
-	// create the Cube
-	cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ), new THREE.MeshNormalMaterial() );
+    bunny.scale.x = 2;
+    bunny.scale.y = 2;
 
-	// add the object to the scene
-	scene.addObject( cube );
+    stage.addChild(bunny);
 
-	// create the container element
-	container = document.createElement( 'div' );
-	document.body.appendChild( container );
+    requestAnimationFrame(animate);
 
-	// init the WebGL renderer and append it to the Dom
-	renderer = new THREE.WebGLRenderer();
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	container.appendChild( renderer.domElement );
+    function animate() {
+        bunny.rotation += 0.01;
 
-}
+        renderer.render(stage);
 
-function checkForNewPlayer() {
-	
-	for(var id in players) {
-					if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
-
-						div = document.createElement('div');
-						div.setAttribute('id', id);
-		            	document.body.appendChild(div);
-
-	        	    	var map = THREE.ImageUtils.loadTexture( "texture.png" );
-		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
-    		            var sprite = new THREE.Sprite( material );
-		                scene.add(sprite);
-		                console.log('Add a sprite to scene');
-					}
-      			}
-}
-
-// ## Animate and Display the Scene
-function animate() {
-	// render the 3D scene
-	render();
-	// relaunch the 'timer' 
-	requestAnimationFrame( animate );
-	checkForNewPlayer();
-}
-
-
-// ## Render the 3D Scene
-function render() {
-	// animate the cube
-	cube.rotation.x += 0.02;
-	cube.rotation.y += 0.0225;
-	cube.rotation.z += 0.0175;
-	// actually display the scene in the Dom element
-	renderer.render( scene, camera );
-}
-			
+        requestAnimationFrame(animate);
+    }			
 			
 			
 		</script>  
