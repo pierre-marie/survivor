@@ -60,7 +60,11 @@
 
 			var render = function () {
 				requestAnimationFrame(render);
-
+				for(var id in players) {
+					if (document.getElementById(id)) {
+						players[id]['sprite'].rotation += 0.1;
+					}
+      			}
 				renderer.render(scene, camera);
 			};
 
@@ -109,7 +113,6 @@
 	socket.on('allPlayers', function(data) {
 		players = JSON.parse(data);
 		addNewPlayerIfNeeded(players);
-		movePlayers(players);
 	});
 
 	function addNewPlayerIfNeeded(players) {
@@ -131,22 +134,12 @@
             	var map = THREE.ImageUtils.loadTexture( "texture.png" );
                 var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
                 var sprite = new THREE.Sprite( material );
-                scene.add( sprite );
+                players[id]['sprite'] = sprite;
+                scene.add(sprite);
             	
 			}
       	}
 	}
-
-	function movePlayers(players) {
-
-		for(var id in players) {
-			if (document.getElementById(id)) {
-				i = document.getElementById(id);
-				i.setAttribute('style', 'margin-top:' + players[id]['y'] + 'px; margin-left:' + players[id]['x'] + 'px; position:absolute;');
-			}
-
-      	}
-    }
 
 KeyboardJS.on('up,right,down,left', function keypress() {
 
