@@ -76,12 +76,18 @@
 		                scene.add(sprite);
 					}
       			}
-				
-				for(var id in players) {
-					if (document.getElementById(id)) {
-						players[id]['sprite'].rotation += 0.1;
+
+				scene.traverse (function (object)
+				{
+    				if (object instanceof THREE.Sprite)
+    				{
+    					object.rotation += 0.1;
+       					 //if (object.name === 'q10') {
+            				// do what you want with it.
+    					//}
+    					
 					}
-      			}
+				});
 
 				renderer.render(scene, camera);
 			};
