@@ -61,28 +61,9 @@
 			document.body.appendChild(renderer.domElement);
 			camera.position.z = 5;
 
-// create the sphere's material
-	var sphereMaterial = new THREE.MeshLambertMaterial(
-	{
-	    color: 0xCC0000
-	});
-
-	// set up the sphere vars
-	var radius = 50, segments = 16, rings = 16;
-
-	// create a new mesh with sphere geometry -
-	// we will cover the sphereMaterial next!
-	var sphere = new THREE.Mesh(
-	   new THREE.SphereGeometry(radius, segments, rings),
-	   sphereMaterial);
-
-	// add the sphere to the scene
-	scene.add(sphere);
-
-
 			var render = function () {
 
-				
+				requestAnimationFrame(render);
 
 				for(var id in players) {
 					if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
@@ -95,12 +76,12 @@
 		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
     		            var sprite = new THREE.Sprite( material );
 		                scene.add(sprite);
-		                playersSprites.add(sprite);
+		                //playersSprites.add(sprite);
 		                console.log('Add a sprite to scene');
 					}
       			}
       			
-requestAnimationFrame(render);
+
 
 				renderer.render(scene, camera);
 			};
