@@ -92,6 +92,10 @@
 	socket.on('message', function(message) {
     });
 
+	socket.on('alreadyConnected', function(message) {
+		alert('A player called ' + message + ' is already in game !');
+	});
+
 	socket.on('deco', function(id) {
 		var div = document.getElementById(id);
 		if (div) {
@@ -133,11 +137,6 @@
 	function movePlayers(players) {
 		//clearCanvas();
 		for(var id in players) {
-
-		//	var c = document.getElementById("myMap");
-		//	var ctx = c.getContext("2d");
-		//	ctx.fillStyle = "#FF0000";
-		//	ctx.fillRect(players[p]['x'], players[p]['y'], 10, 10);
 
 			if (document.getElementById(id)) {
 				i = document.getElementById(id);
