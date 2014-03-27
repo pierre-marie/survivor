@@ -79,6 +79,8 @@
 		var newShoot = new PIXI.Sprite(newShootTexture);
 		newShoot.anchor.x = 0.5;
 		newShoot.anchor.y = 0.5;
+		newShoot.position.x = s.x;
+		newShoot.position.y = s.y;
 		newShoot.name = s.uniqId;
 		shootsContainer.addChild(newShoot);
 	}
