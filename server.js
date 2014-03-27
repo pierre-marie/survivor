@@ -46,8 +46,7 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('setPicture', function(message) {
-		var s = message.replace("_n","_t");
-		players[socket.id]['picture'] = s;
+		players[socket.id]['picture'] = message;
 	});
 
 	setInterval(function updatePos() {

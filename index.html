@@ -185,7 +185,7 @@ KeyboardJS.on('up,right,down,left', function keypress() {
 
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api("/me/picture?width=180&height=180",  function(response) {
+    FB.api("/me/picture?width=50&height=50",  function(response) {
     	socket.emit('setPicture', response.data.url);
     	FB.api('/me', function(response) {
 			socket.emit('setName', response.name);
