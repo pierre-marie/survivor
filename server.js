@@ -77,7 +77,7 @@ io.sockets.on('connection', function (socket) {
 			sendPlayers();
 //			playersUpdated = false;
 //		}
-	}, 500);
+	}, 200);
 
 	socket.on('keyboardPress', function(keys){
 		if (keys.right) {
