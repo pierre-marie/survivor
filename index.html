@@ -125,8 +125,9 @@
         for(var i = 0; i < stage.children.length; i++) {
 			stage.children[i].position.x = players[stage.children[i].name]['x'];
 			stage.children[i].position.y = players[stage.children[i].name]['y'];
+			stage.children[i].rotation = players[stage.children[i].name]['r'];
 		}
-        
+
 		updateLocalPlayers();
         renderer.render(stage);
         requestAnimationFrame(animate);

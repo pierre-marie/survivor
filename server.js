@@ -17,13 +17,13 @@ io.sockets.on('connection', function (socket) {
 	socket.on('message', function(message) {
         console.log(socket.id + ' a envoye : ' + message);
 
-		var res = message.split("/");
 		if (typeof players[socket.id] == 'undefined') {
 			players[socket.id] = {};
 		}
 		if (typeof players[socket.id]['x'] == 'undefined') {
 			players[socket.id]['x'] = 0.0;
 			players[socket.id]['y'] = 0.0;
+			players[socket.id]['r'] = 0.0;
 		}
 
     });
@@ -52,10 +52,10 @@ io.sockets.on('connection', function (socket) {
 	setInterval(function updatePos() {
 		for(var p in players) {
 			if (players[p]['right']) {
-		 		players[p]['x'] += 1;
+		 		players[p]['r'] += 0.01;
 		 	}
 		 	if (players[p]['left']) {
-		 		players[p]['x'] -= 1;
+		 		players[p]['r'] -= 0.01;
 		 	}
 		 	if (players[p]['up']) {
 		 		players[p]['y'] -= 1;
