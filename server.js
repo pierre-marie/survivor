@@ -40,6 +40,7 @@ io.sockets.on('connection', function (socket) {
 		} else {
 			socket.emit('alreadyConnected', message);
 		}
+		sendPlayers();
 	});
 
 	socket.on('setPicture', function(message) {
