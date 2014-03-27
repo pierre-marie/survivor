@@ -119,25 +119,16 @@
 	function addNewPlayerIfNeeded() {
 		for(var id in players) {
 			if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
-				
-				//src = players[id]['picture'],
-            	
-            	//img = document.createElement('img');
-            	//img.src = src;
-            	//img.setAttribute('class', 'circular');
 
-				//div = document.createElement('div');
-				//div.setAttribute('id', id);
+				div = document.createElement('div');
+				div.setAttribute('id', id);
+            	document.body.appendChild(div);
 
-            	//document.getElementById('playzone').appendChild(div);
-            	//document.getElementById(id).appendChild(img);
-            	
             	var map = THREE.ImageUtils.loadTexture( "texture.png" );
                 var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
                 var sprite = new THREE.Sprite( material );
                 players[id]['sprite'] = sprite;
                 scene.add(sprite);
-            	
 			}
       	}
 	}
