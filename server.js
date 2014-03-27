@@ -91,7 +91,6 @@ io.sockets.on('connection', function (socket) {
 
   	socket.on('disconnect', function () { 
   		console.log(socket.id + 'diconnect');
-  		var index = players.indexOf(socket.id);
-		players.splice(index, 1);
+  		delete players[socket.id];
   	});
 });
