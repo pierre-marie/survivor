@@ -7,6 +7,8 @@ io.sockets.on('connection', function (socket) {
 
 	console.log(socket.id + ' connect');
 	socket.emit('message', 'Vous êtes bien connecté !');
+	socket.emit('yourId', socket.id);
+	
 
 	function sendPlayers() {
 		socket.emit('allPlayers', JSON.stringify(players));
