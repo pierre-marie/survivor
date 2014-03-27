@@ -78,7 +78,10 @@
 		                console.log('Add a sprite to scene');
 					}
       			}
-      			
+
+				renderer.render(scene, camera);
+			};
+
       			for (var c = 0; c < scene.children.length; c ++ ) {
 			      		
 			      		//if (object.name === 'q10') {
@@ -87,12 +90,9 @@
       				console.log('Rotate a sprite in scene');
 					var sprite = scene.children[c];
 //					sprite.rotation += 0.1;
-//					sprite.position.set( 10,40, 0 );
+					sprite.position.set( 10,40, 0 );
 				}
-
-				renderer.render(scene, camera);
-			};
-
+				
 			render();
 		</script>  
 
