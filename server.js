@@ -58,12 +58,12 @@ io.sockets.on('connection', function (socket) {
 		 		players[p]['r'] -= 0.01;
 		 	}
 		 	if (players[p]['up']) {
-		 		players[p]['x'] += Math.cos(players[p]['r'] * Math.PI / 180);
-        		players[p]['y'] += Math.sin(players[p]['r'] * Math.PI / 180);
+		 		players[p]['x'] += 100 * Math.cos(players[p]['r'] * Math.PI / 180);
+        		players[p]['y'] += 100 * Math.sin(players[p]['r'] * Math.PI / 180);
 		 	}
 		 	if (players[p]['down']) {
-		 		players[p]['x'] -= Math.cos(players[p]['r'] * Math.PI / 180);
-        		players[p]['y'] -= Math.sin(players[p]['r'] * Math.PI / 180);
+		 		players[p]['x'] -= 100 * Math.cos(players[p]['r'] * Math.PI / 180);
+        		players[p]['y'] -= 100 * Math.sin(players[p]['r'] * Math.PI / 180);
 		 	}
 		}
 //		if (playersUpdated) {
