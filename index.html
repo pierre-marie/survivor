@@ -65,39 +65,43 @@
    ref.parentNode.insertBefore(js, ref);
   }(document));
 </script>
-  <script>
-// declare a bunch of variable we will need later
-var players;
-// You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
+<script>
+
+	var knownPlayersId = new Array();
+	var players;
+
     var renderer = new PIXI.WebGLRenderer(800, 600);
-
     document.body.appendChild(renderer.view);
-
     var stage = new PIXI.Stage;
-
-    var bunnyTexture = PIXI.Texture.fromImage("https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/t1.0-1/c50.0.200.200/p200x200/1544352_10201820111573008_467508451_n.jpg");
-    var bunny = new PIXI.Sprite(bunnyTexture);
-
-    bunny.position.x = 400;
-    bunny.position.y = 300;
-
-    bunny.scale.x = 2;
-    bunny.scale.y = 2;
-
-    stage.addChild(bunny);
-
     requestAnimationFrame(animate);
 
+	function updateLocalPlayers() {
+
+		for(var id in players) {
+			if (knownPlayersId.indexOf(id) == -1) {
+				knownPlayersId.push(id);
+
+				var newPlayerTexture = PIXI.Texture.fromImage(players[id]['picture']);
+    			var newPlayer = new PIXI.Sprite(newPlayerTexture);
+
+			    newPlayer.position.x = 400;
+			    newPlayer.position.y = 300;
+
+			    newPlayer.scale.x = 0.5;
+			    newPlayer.scale.y = 0.5;
+
+			    stage.addChild(newPlayer);
+			}
+      	}
+	}
+
     function animate() {
-        bunny.rotation += 0.01;
-
+        //bunny.rotation += 0.01;
+		updateLocalPlayers();
         renderer.render(stage);
-
         requestAnimationFrame(animate);
     }			
-			
-			
-		</script>  
+</script>  
 
 <div id="fb-root"></div>
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
@@ -126,10 +130,7 @@ var players;
 	});
 
 	socket.on('deco', function(id) {
-		var div = document.getElementById(id);
-		if (div) {
-		    div.parentNode.removeChild(div);
-		}
+		//remove in knownPlayersId
 	});
 
 	function clearCanvas() {
