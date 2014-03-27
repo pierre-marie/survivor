@@ -94,6 +94,7 @@
 
 	socket.on('alreadyConnected', function(message) {
 		alert('A player called ' + message + ' is already in game !');
+		socket.close(); // a verifier
 	});
 
 	socket.on('deco', function(id) {
