@@ -61,15 +61,6 @@
 			document.body.appendChild(renderer.domElement);
 			camera.position.z = 5;
 
-
-var map = THREE.ImageUtils.loadTexture( "texture.png" );
-		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
-    		            var sprite = new THREE.Sprite( material );
-		                players[id]['sprite'] = sprite;
-		                scene.add(sprite);
-		                playersSprites.add(sprite);
-		                console.log('Add a sprite to scene');
-		                
 			var render = function () {
 
 				requestAnimationFrame(render);
@@ -81,7 +72,13 @@ var map = THREE.ImageUtils.loadTexture( "texture.png" );
 						div.setAttribute('id', id);
 		            	document.body.appendChild(div);
 
-	        	    	
+	        	    	var map = THREE.ImageUtils.loadTexture( "texture.png" );
+		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
+    		            var sprite = new THREE.Sprite( material );
+		                players[id]['sprite'] = sprite;
+		                scene.add(sprite);
+		                playersSprites.add(sprite);
+		                console.log('Add a sprite to scene');
 					}
       			}
       			
@@ -90,10 +87,10 @@ var map = THREE.ImageUtils.loadTexture( "texture.png" );
 			      		//if (object.name === 'q10') {
             				// do what you want with it.
     					//}		
-      				console.log('Rotate a sprite in scene');
-					var sprite = playersSprites.children[c];
+      				//console.log('Rotate a sprite in scene');
+					//var sprite = playersSprites.children[c];
 					//sprite.rotation += 0.1;
-					sprite.position.set( sprite.position.x + 0.1, 100, 0 );
+					//sprite.position.set( sprite.position.x + 0.1, 100, 0 );
 				}
 
 				renderer.render(scene, camera);
