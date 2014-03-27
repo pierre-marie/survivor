@@ -71,7 +71,10 @@
 	});
 
 	function addShoot(s) {
-		shoots.push(s);
+		
+		shoots[s.uniqId] = {};
+		shoots[s.uniqId] = s;
+
 		var newShootTexture = PIXI.Texture.fromImage('shoot.png');
 		var newShoot = new PIXI.Sprite(newShootTexture);
 		newShoot.anchor.x = 0.5;
