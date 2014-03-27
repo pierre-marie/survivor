@@ -74,6 +74,7 @@
     		            var sprite = new THREE.Sprite( material );
 		                players[id]['sprite'] = sprite;
 		                scene.add(sprite);
+		                console.log('Add a sprite to scene');
 					}
       			}
 
@@ -82,6 +83,8 @@
     				if (object instanceof THREE.Sprite)
     				{
     					object.rotation += 0.1;
+    					console.log('Rotate a sprite in scene');
+    					
        					 //if (object.name === 'q10') {
             				// do what you want with it.
     					//}
