@@ -74,7 +74,7 @@
 		if (message == 'START') {
 			
 
-    var renderer = new PIXI.WebGLRenderer(screen.width, screen.height);
+    var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
     document.body.appendChild(renderer.view);
     var stage = new PIXI.Stage;
     requestAnimationFrame(animate);
