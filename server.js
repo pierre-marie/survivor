@@ -30,16 +30,17 @@ io.sockets.on('connection', function (socket) {
 
 	socket.on('setName', function(message) {
 		var auth = true;
-		for(var p in players) {
-			if (players[p]['name'] = message) {
-				auth = false;
-			}
-		}
-		if (auth) {
-			players[socket.id]['name'] = message;
-		} else {
-			socket.emit('alreadyConnected', message);
-		}
+//		for(var p in players) {
+//			if (players[p]['name'] = message) {
+//				auth = false;
+//			}
+//		}
+//		if (auth) {
+//			players[socket.id]['name'] = message;
+//		} else {
+//			socket.emit('alreadyConnected', message);
+//		}
+		players[socket.id]['name'] = message;
 		sendPlayers();
 	});
 
