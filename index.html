@@ -2,18 +2,11 @@
     "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
-    <title>webSocket</title>
+    <title>Survivor - webSocket</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script src="./pixi.js"></script>
-    <style type="text/css">
-    .circular {
-		width: 50px;
-		height: 50px;
-		border-radius: 150px;
-		-webkit-border-radius: 150px;
-		-moz-border-radius: 150px;
-	}
-    </style>
+	<script src="./player.js"></script>
+	<script src="./shoot.js"></script>
   </head>
   <body>
   <script>
@@ -50,6 +43,7 @@
 
 <div id="fb-root"></div>
 <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+<button onclick="iJustShoot()">shoot</button>
 
 <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -63,8 +57,20 @@
 <script>
 	var knownPlayersId = new Array();
 	var players;
+	var shoots;
 
 	var socket = io.connect('http://91.121.137.144:8081');
+
+	function iJustShoot() {
+		socket.emit('message', 'SHOOT');
+		var s = new Shoot(players[socket.id]['x'], players[socket.id]['y'], players[socket.id]['r'], socket.id);
+		shoots.push(s);
+	}
+
+	socket.on('INCOMING_SHOOT', function(id) {
+		var s = new Shoot(players[id]['x'], players[id]['y'], players[id]['r'], id);
+		shoots.push(s);
+	});
 
   	socket.on('connect', function () {
   		socket.send('hello');
@@ -72,7 +78,7 @@
 
 	socket.on('message', function(message) {
 		if (message == 'START') {
-			
+
 
     var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
     document.body.appendChild(renderer.view);
@@ -93,15 +99,22 @@
 			    stage.addChild(newPlayer);
 			}
       	}
-	}
-
-    function animate() {
-        for(var i = 0; i < stage.children.length; i++) {
+      	for(var i = 0; i < stage.children.length; i++) {
 			stage.children[i].position.x = players[stage.children[i].name]['x'];
 			stage.children[i].position.y = players[stage.children[i].name]['y'];
 			stage.children[i].rotation = players[stage.children[i].name]['r'];
 		}
+	}
+
+	function updateLocalPlayers() {
+		
+	}
+
+    function animate() {
+
 		updateLocalPlayers();
+		updateLocalShoots();
+
         renderer.render(stage);
         requestAnimationFrame(animate);
     }

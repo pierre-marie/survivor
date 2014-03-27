@@ -16,6 +16,10 @@ io.sockets.on('connection', function (socket) {
 	sendPlayers();
 	socket.on('message', function(message) {
         console.log(socket.id + ' a envoye : ' + message);
+        
+        if (message == 'SHOOT') {
+        	socket.broadcast.emit('INCOMING_SHOOT', socket.id);
+        }
 
 		if (typeof players[socket.id] == 'undefined') {
 			players[socket.id] = {};
