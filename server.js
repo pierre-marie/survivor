@@ -55,7 +55,7 @@ io.sockets.on('connection', function (socket) {
 			sendPlayers();
 //			playersUpdated = false;
 //		}
-	}, 100);
+	}, 20);
 
 	socket.on('keyboardPress', function(keys){
 		if (keys.right) {
