@@ -62,8 +62,8 @@
 			var render = function () {
 				requestAnimationFrame(render);
 				
-				for(var id in players) {
-					if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
+				//for(var id in players) {
+				//	if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
 
 						div = document.createElement('div');
 						div.setAttribute('id', id);
@@ -75,8 +75,8 @@
 		                players[id]['sprite'] = sprite;
 		                scene.add(sprite);
 		                console.log('Add a sprite to scene');
-					}
-      			}
+				//	}
+      			//}
 
 				scene.traverse (function (object)
 				{
