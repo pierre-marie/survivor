@@ -82,7 +82,7 @@
 
 	function iJustShoot() {
 		socket.emit('message', 'SHOOT');
-		var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['r'], socket.id, Math.floor(Math.random() * 10000000000000001));
+		var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
 		addShoot(s);
 	}
 
