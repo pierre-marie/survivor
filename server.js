@@ -50,6 +50,7 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	setInterval(function updatePos() {
+		var speed = 10;
 		for(var p in players) {
 			if (players[p]['right']) {
 		 		players[p]['r'] += 0.01;
@@ -58,7 +59,7 @@ io.sockets.on('connection', function (socket) {
 		 		players[p]['r'] -= 0.01;
 		 	}
 		 	if (players[p]['up']) {
-		 		players[p]['y'] -= 1;
+		 		players[p]['y'] += speed * Math.Sin(players[p]['r']);
 		 	}
 		 	if (players[p]['down']) {
 		 		players[p]['y'] += 1;
