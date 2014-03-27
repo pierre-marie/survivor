@@ -52,7 +52,6 @@
 </script>
   <script>
 	  		var players;
-			var playersSprites = new THREE.Object3D();
 
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -76,12 +75,19 @@
 		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
     		            var sprite = new THREE.Sprite( material );
 		                scene.add(sprite);
-		                //playersSprites.add(sprite);
 		                console.log('Add a sprite to scene');
 					}
       			}
       			
-
+      			for (var c = 0; c < scene.children.length; c ++ ) {
+			      		
+			      		//if (object.name === 'q10') {
+            				// do what you want with it.
+    					//}		
+      				console.log('Rotate a sprite in scene');
+					var sprite = scene.children[c];
+					sprite.rotation += 0.1;
+				}
 
 				renderer.render(scene, camera);
 			};
