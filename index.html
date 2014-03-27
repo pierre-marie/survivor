@@ -12,6 +12,13 @@
 	-moz-border-radius: 150px;
 	background: url(http://link-to-your/image.jpg) no-repeat;
 	}
+	.rotated {
+    -webkit-transform: rotate(45deg);  /* Chrome, Safari 3.1+ */
+    -moz-transform: rotate(45deg);  /* Firefox 3.5-15 */
+    -ms-transform: rotate(45deg);  /* IE 9 */
+    -o-transform: rotate(45deg);  /* Opera 10.50-12.00 */
+    transform: rotate(45deg);  /* Firefox 16+, IE 10+, Opera 12.10+ */
+}
     </style>
   </head>
   <body>
@@ -128,6 +135,7 @@
 
 				div = document.createElement('div');
 				div.setAttribute('id', id);
+				div.setAttribute('class', 'rotated');
 
             	document.getElementById('playzone').appendChild(div);
             	document.getElementById(id).appendChild(img);
