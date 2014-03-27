@@ -59,6 +59,10 @@
 			document.body.appendChild(renderer.domElement);
 			camera.position.z = 5;
 
+			
+      			
+			var render = function () {
+
 			for(var id in players) {
 					if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
 
@@ -75,8 +79,6 @@
 					}
       			}
       			
-			var render = function () {
-
 				scene.traverse (function (object)
 				{
     				if (object instanceof THREE.Sprite)
