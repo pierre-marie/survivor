@@ -41,6 +41,7 @@ io.sockets.on('connection', function (socket) {
 //			socket.emit('alreadyConnected', message);
 //		}
 		players[socket.id]['name'] = message;
+		socket.emit('message', 'START');
 		sendPlayers();
 	});
 

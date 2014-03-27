@@ -65,10 +65,32 @@
    ref.parentNode.insertBefore(js, ref);
   }(document));
 </script>
-<script>
 
+<div id="fb-root"></div>
+<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+
+<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
+<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+</form> -->
+
+<script src="./KeyboardJS-master/keyboard.js"></script>
+<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
+<script>
 	var knownPlayersId = new Array();
 	var players;
+
+	var socket = io.connect('http://91.121.137.144:8081');
+
+  	socket.on('connect', function () {
+  		socket.send('hello');
+  	});
+
+	socket.on('message', function(message) {
+		if (message == 'START') {
+			
 
     var renderer = new PIXI.WebGLRenderer(800, 600);
     document.body.appendChild(renderer.view);
@@ -100,29 +122,8 @@
 		updateLocalPlayers();
         renderer.render(stage);
         requestAnimationFrame(animate);
-    }			
-</script>  
-
-<div id="fb-root"></div>
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-
-<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
-<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-</form> -->
-
-<script src="./KeyboardJS-master/keyboard.js"></script>
-<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
-<script>
-	var socket = io.connect('http://91.121.137.144:8081');
-
-  	socket.on('connect', function () {
-  		socket.send('hello');
-  	});
-
-	socket.on('message', function(message) {
+    }
+		}
     });
 
 	socket.on('alreadyConnected', function(message) {
