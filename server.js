@@ -50,7 +50,6 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	setInterval(function updatePos() {
-		var speed = 10;
 		for(var p in players) {
 			if (players[p]['right']) {
 		 		players[p]['r'] += 0.01;
@@ -59,10 +58,12 @@ io.sockets.on('connection', function (socket) {
 		 		players[p]['r'] -= 0.01;
 		 	}
 		 	if (players[p]['up']) {
-		 		players[p]['y'] += speed * Math.sin(players[p]['r']);
+		 		players[p]['x'] += Math.cos(players[p]['r'] * Math.PI / 180);
+        		players[p]['y'] += Math.sin(players[p]['r'] * Math.PI / 180);
 		 	}
 		 	if (players[p]['down']) {
-		 		players[p]['y'] += 1;
+		 		players[p]['x'] -= Math.cos(players[p]['r'] * Math.PI / 180);
+        		players[p]['y'] -= Math.sin(players[p]['r'] * Math.PI / 180);
 		 	}
 		}
 //		if (playersUpdated) {
