@@ -59,7 +59,7 @@ io.sockets.on('connection', function (socket) {
 		 		players[p]['r'] -= 0.01;
 		 	}
 		 	if (players[p]['up']) {
-		 		players[p]['y'] += speed * Math.Sin(players[p]['r']);
+		 		players[p]['y'] += speed * Math.sin(players[p]['r']);
 		 	}
 		 	if (players[p]['down']) {
 		 		players[p]['y'] += 1;
