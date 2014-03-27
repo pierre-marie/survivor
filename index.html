@@ -62,8 +62,8 @@
 			var render = function () {
 				requestAnimationFrame(render);
 				
-				//for(var id in players) {
-				//	if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
+				for(var id in players) {
+					if ((!document.getElementById(id)) && (typeof players[id]['picture'] != 'undefined')) {
 
 						div = document.createElement('div');
 						div.setAttribute('id', id);
@@ -75,22 +75,9 @@
 		                players[id]['sprite'] = sprite;
 		                scene.add(sprite);
 		                console.log('Add a sprite to scene');
-				//	}
-      			//}
-
-				scene.traverse (function (object)
-				{
-    				if (object instanceof THREE.Sprite)
-    				{
-    					object.rotation += 0.1;
-    					console.log('Rotate a sprite in scene');
-    					
-       					 //if (object.name === 'q10') {
-            				// do what you want with it.
-    					//}
-    					
 					}
-				});
+      			}
+
 
 				renderer.render(scene, camera);
 			};
