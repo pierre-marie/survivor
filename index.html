@@ -61,6 +61,15 @@
 			document.body.appendChild(renderer.domElement);
 			camera.position.z = 5;
 
+
+var map = THREE.ImageUtils.loadTexture( "texture.png" );
+		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
+    		            var sprite = new THREE.Sprite( material );
+		                players[id]['sprite'] = sprite;
+		                scene.add(sprite);
+		                playersSprites.add(sprite);
+		                console.log('Add a sprite to scene');
+		                
 			var render = function () {
 
 				requestAnimationFrame(render);
@@ -72,13 +81,7 @@
 						div.setAttribute('id', id);
 		            	document.body.appendChild(div);
 
-	        	    	var map = THREE.ImageUtils.loadTexture( "texture.png" );
-		                var material = new THREE.SpriteMaterial( { map: map, color: 0xffffff, fog: true } );
-    		            var sprite = new THREE.Sprite( material );
-		                players[id]['sprite'] = sprite;
-		                scene.add(sprite);
-		                playersSprites.add(sprite);
-		                console.log('Add a sprite to scene');
+	        	    	
 					}
       			}
       			
