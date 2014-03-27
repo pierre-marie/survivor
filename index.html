@@ -105,32 +105,20 @@
 
 				var newPlayerTexture = PIXI.Texture.fromImage(players[id]['picture']);
     			var newPlayer = new PIXI.Sprite(newPlayerTexture);
-
-			    newPlayer.position.x = 400;
-			    newPlayer.position.y = 300;
-
-			    newPlayer.scale.x = 0.3;
-			    newPlayer.scale.y = 0.3;
-
 			    newPlayer.anchor.x = 0.5;
 				newPlayer.anchor.y = 0.5;
-
 				newPlayer.name = id;
-
 			    stage.addChild(newPlayer);
 			}
       	}
 	}
 
     function animate() {
-        //bunny.rotation += 0.01;
-        
         for(var i = 0; i < stage.children.length; i++) {
 			stage.children[i].position.x = players[stage.children[i].name]['x'];
 			stage.children[i].position.y = players[stage.children[i].name]['y'];
 			stage.children[i].rotation = players[stage.children[i].name]['r'];
 		}
-
 		updateLocalPlayers();
         renderer.render(stage);
         requestAnimationFrame(animate);
