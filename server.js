@@ -1,7 +1,7 @@
 
 var players = {};
 var playersUpdated = false;
-var io = require('socket.io').listen(8081, { log: false });
+var io = require('socket.io').listen(8081);
 
 io.sockets.on('connection', function (socket) {
 
