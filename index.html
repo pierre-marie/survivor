@@ -3,6 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <title>webSocket</title>
+    <style type="text/css">
+    .circular {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(http://link-to-your/image.jpg) no-repeat;
+	}
+    </style>
   </head>
   <body>
 <div id="playzone" style="width:1000px; height:800px; position:absolute;"></div>
@@ -102,6 +112,7 @@
             	
             	img = document.createElement('img');
             	img.src = src;
+            	img.setAttribute('class', 'circular');
 
 				div = document.createElement('div');
 				div.setAttribute('id', id);
