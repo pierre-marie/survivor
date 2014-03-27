@@ -6,30 +6,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script src="./pixi.js"></script>
     <style type="text/css">
-    body {
-				background-color: #f0f0f0;
-				margin: 0px;
-				overflow: hidden;
-			}
-			#info {
-				text-align:center;
-				z-index	: 1;
-				position: absolute;
-				top: 0px; width: 100%;
-				padding: 5px;
-			} 
-			a {
-				color: #0080bb;
-			}
     .circular {
 		width: 50px;
 		height: 50px;
 		border-radius: 150px;
 		-webkit-border-radius: 150px;
 		-moz-border-radius: 150px;
-	}
-	canvas {
-		width: 100%; height: 100%;
 	}
     </style>
   </head>
@@ -101,8 +83,8 @@
 
 		for(var id in players) {
 			if (knownPlayersId.indexOf(id) == -1) {
+				
 				knownPlayersId.push(id);
-
 				var newPlayerTexture = PIXI.Texture.fromImage(players[id]['picture']);
     			var newPlayer = new PIXI.Sprite(newPlayerTexture);
 			    newPlayer.anchor.x = 0.5;
