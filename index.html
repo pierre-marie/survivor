@@ -92,6 +92,13 @@
 	socket.on('message', function(message) {
     });
 
+	socket.on('deco', function(id) {
+		var div = document.getElementById(id);
+		if (div) {
+		    div.parentNode.removeChild(div);
+		}
+	});
+
 	function clearCanvas() {
 		canvas = document.getElementById("myMap");
 		ctx = canvas.getContext("2d");

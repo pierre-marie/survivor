@@ -92,5 +92,6 @@ io.sockets.on('connection', function (socket) {
   	socket.on('disconnect', function () { 
   		console.log(socket.id + 'diconnect');
   		delete players[socket.id];
+  		socket.broadcast.emit('deco', socket.id);
   	});
 });
