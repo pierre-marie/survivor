@@ -56,27 +56,28 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	setInterval(function updatePos() {
+		var speed = 10;
 		for(var p in players) {
 			if (players[p]['right']) {
-		 		players[p]['r'] += 0.01;
+		 		players[p]['r'] += 0.01 * speed;
 		 	}
 		 	if (players[p]['left']) {
-		 		players[p]['r'] -= 0.01;
+		 		players[p]['r'] -= 0.01 * speed;
 		 	}
 		 	if (players[p]['up']) {
-		 		players[p]['x'] += Math.cos(players[p]['r']);
-        		players[p]['y'] += Math.sin(players[p]['r']);
+		 		players[p]['x'] += speed * Math.cos(players[p]['r']);
+        		players[p]['y'] += speed * Math.sin(players[p]['r']);
 		 	}
 		 	if (players[p]['down']) {
-		 		players[p]['x'] -= Math.cos(players[p]['r']);
-        		players[p]['y'] -= Math.sin(players[p]['r']);
+		 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
+        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
 		 	}
 		}
 //		if (playersUpdated) {
 			sendPlayers();
 //			playersUpdated = false;
 //		}
-	}, 20);
+	}, 500);
 
 	socket.on('keyboardPress', function(keys){
 		if (keys.right) {
