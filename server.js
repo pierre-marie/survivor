@@ -23,5 +23,6 @@ io.sockets.on('connection', function (socket) {
   	socket.on('disconnect', function () { 
   		console.log(socket.id + ' disconnect');
   		socket.broadcast.emit('DECO', socket.id);
+  		socket.emit('DECO', socket.id);
   	});
 });
