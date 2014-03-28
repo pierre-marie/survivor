@@ -138,6 +138,8 @@
 					players[p['idPlayer']].up = p['up'];
 					players[p['idPlayer']].down = p['down'];
 				}
+				
+				console.log(players);
 			});
 
 			socket.on('message', function(message) {
@@ -228,7 +230,6 @@
 			   }
 
 			 	if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down)) {
-			 		console.log('keys combination changed');
 			 		players[playerId].left = keys.left;
 			   		players[playerId].right = keys.right;
 			   		players[playerId].up = keys.up;
@@ -254,7 +255,6 @@
 			   }
 
 			   if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down)) {
-			   		console.log('keys combination changed');
 			   		players[playerId].left = keys.left;
 			   		players[playerId].right = keys.right;
 			   		players[playerId].up = keys.up;
