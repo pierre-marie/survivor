@@ -124,12 +124,15 @@
 				if (typeof players[p['idPlayer']] == 'undefined') {
 
 					//Save unknown player
+					console.log('Add -> ' + p['name']);
 					players[p['idPlayer']] = {};
 					var np = new Player(p['x'], p['y'], p['r'], p['picture'], p['name'], p['idPlayer']);
 					addPlayer(np);
 				}
 				else {
 					//Update player
+					console.log('Update -> ' + players[p['idPlayer']].name);
+
 					players[p['idPlayer']].x = p['x'];
 					players[p['idPlayer']].y = p['y'];
 					players[p['idPlayer']].r = p['r'];
