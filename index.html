@@ -201,8 +201,13 @@
 				alert('A player called ' + message + ' is already in game !');
 			});
 			
-			socket.on('deco', function(id) {
-				//remove in knownPlayersId
+			socket.on('DECO', function(id) {
+				delete players[id];
+				for(var i = 0; i < playersContainer.children.length; i++) {
+					if (playersContainer.children[i].name == id) {
+						playersContainer.removeChild(playersContainer.children[i]);
+					}
+				}
 			});
 			
 			function clearCanvas() {
