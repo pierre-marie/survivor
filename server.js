@@ -8,14 +8,7 @@ io.sockets.on('connection', function (socket) {
 	console.log(socket.id + ' connect');
 	socket.emit('message', 'Vous êtes bien connecté !');
 	socket.emit('yourId', socket.id);
-	
 
-	function sendPlayers() {
-		socket.emit('allPlayers', JSON.stringify(players));
-		socket.broadcast.emit('allPlayers', JSON.stringify(players));
-	}
-
-	sendPlayers();
 	socket.on('message', function(message) {
         console.log(socket.id + ' a envoye : ' + message);
         
@@ -34,50 +27,31 @@ io.sockets.on('connection', function (socket) {
 
     });
 
-	socket.on('setName', function(message) {
-		var auth = true;
+	//Receive an updated player to broadcast
+	socket.on('SEND_PLAYER', function(p) {
+		socket.broadcast.emit('UPDATE_PLAYER', p);
+	});
+
+//	setInterval(function updatePos() {
+//		var speed = 10;
 //		for(var p in players) {
-//			if (players[p]['name'] = message) {
-//				auth = false;
-//			}
+//			if (players[p]['right']) {
+//		 		players[p]['r'] += 0.01 * speed;
+//		 	}
+//		 	if (players[p]['left']) {
+//		 		players[p]['r'] -= 0.01 * speed;
+//		 	}
+//		 	if (players[p]['up']) {
+//		 		players[p]['x'] += speed * Math.cos(players[p]['r']);
+//        		players[p]['y'] += speed * Math.sin(players[p]['r']);
+//		 	}
+//		 	if (players[p]['down']) {
+//		 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
+//        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
+//		 	}
 //		}
-//		if (auth) {
-//			players[socket.id]['name'] = message;
-//		} else {
-//			socket.emit('alreadyConnected', message);
-//		}
-		players[socket.id]['name'] = message;
-		socket.emit('message', 'START');
-		sendPlayers();
-	});
-
-	socket.on('setPicture', function(message) {
-		players[socket.id]['picture'] = message;
-	});
-
-	setInterval(function updatePos() {
-		var speed = 10;
-		for(var p in players) {
-			if (players[p]['right']) {
-		 		players[p]['r'] += 0.01 * speed;
-		 	}
-		 	if (players[p]['left']) {
-		 		players[p]['r'] -= 0.01 * speed;
-		 	}
-		 	if (players[p]['up']) {
-		 		players[p]['x'] += speed * Math.cos(players[p]['r']);
-        		players[p]['y'] += speed * Math.sin(players[p]['r']);
-		 	}
-		 	if (players[p]['down']) {
-		 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
-        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
-		 	}
-		}
-//		if (playersUpdated) {
-			sendPlayers();
-//			playersUpdated = false;
-//		}
-	}, 200);
+//		sendPlayersIfNeeded();
+//	}, 20);
 
 	socket.on('keyboardPress', function(keys){
 		if (keys.right) {

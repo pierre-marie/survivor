@@ -1,227 +1,243 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-    "http://www.w3.org/TR/html4/strict.dtd">
+	"http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
-  <head>
-    <title>Survivor - webSocket</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script src="./pixi.js"></script>
-	<script src="./player.js"></script>
-	<script src="./shoot.js"></script>
-  </head>
-  <body>
-  <script>
-  //Facebook connect
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '427095730769334',
-    status     : true, // check login status
-    cookie     : true, // enable cookies to allow the server to access the session
-    xfbml      : true  // parse XFBML
-  });
+	<head>
+		<title>Survivor - webSocket</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script src="./pixi.js"></script>
+		<script src="./player.js"></script>
+		<script src="./shoot.js"></script>
+	</head>
+	<body>
+		<script>
+			//Facebook connect
+			window.fbAsyncInit = function() {
+			FB.init({
+			  appId      : '427095730769334',
+			  status     : true, // check login status
+			  cookie     : true, // enable cookies to allow the server to access the session
+			  xfbml      : true  // parse XFBML
+			});
+			
+			FB.Event.subscribe('auth.authResponseChange', function(response) {
+			  // Here we specify what we do with the response anytime this event occurs. 
+			  if (response.status === 'connected') {
+			    loadMyPlayer();
+			  } else if (response.status === 'not_authorized') {
+			    FB.login();
+			  } else {
+			    FB.login();
+			  }
+			});
+			};
+			
+			// Load the SDK asynchronously
+			(function(d){
+			 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement('script'); js.id = id; js.async = true;
+			 js.src = "//connect.facebook.net/en_US/all.js";
+			 ref.parentNode.insertBefore(js, ref);
+			}(document));
+		</script>
+		<div id="fb-root"></div>
+		<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+		<button onclick="iJustShoot()">shoot</button>
+		<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
+			<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+			</form> -->
+		<script src="./KeyboardJS-master/keyboard.js"></script>
+		<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
+		<script>
 
-  FB.Event.subscribe('auth.authResponseChange', function(response) {
-    // Here we specify what we do with the response anytime this event occurs. 
-    if (response.status === 'connected') {
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      FB.login();
-    } else {
-      FB.login();
-    }
-  });
-  };
+			//myPlayer socket id
+			var playerId;
 
-  // Load the SDK asynchronously
-  (function(d){
-   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement('script'); js.id = id; js.async = true;
-   js.src = "//connect.facebook.net/en_US/all.js";
-   ref.parentNode.insertBefore(js, ref);
-  }(document));
-</script>
+			//OBJECTS container
+			var players = {};
+			var shoots = {};
 
-<div id="fb-root"></div>
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-<button onclick="iJustShoot()">shoot</button>
-
-<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
-<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-</form> -->
-
-<script src="./KeyboardJS-master/keyboard.js"></script>
-<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
-<script>
-	var playerId;
-	var knownPlayersId = new Array();
-	var players;
-	var shoots = {};
-
-	//PIXI container
-	var shootsContainer= new PIXI.DisplayObjectContainer();
-	var playersContainer = new PIXI.DisplayObjectContainer();
-
-	var socket = io.connect('http://91.121.137.144:8081');
-
-	socket.on('yourId', function(message) {
-		playerId = message;
-	});
-
-	function addShoot(s) {
-		
-		shoots[s.uniqId] = {};
-		shoots[s.uniqId] = s;
-
-		var newShootTexture = PIXI.Texture.fromImage('shoot.png');
-		var newShoot = new PIXI.Sprite(newShootTexture);
-		newShoot.anchor.x = 0.5;
-		newShoot.anchor.y = 0.5;
-		newShoot.position.x = s.x;
-		newShoot.position.y = s.y;
-		newShoot.name = s.uniqId;
-		shootsContainer.addChild(newShoot);
-	}
-
-	function iJustShoot() {
-		socket.emit('message', 'SHOOT');
-		var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
-		addShoot(s);
-	}
-
-	socket.on('INCOMING_SHOOT', function(id) {
-		var s = new Shoot(players[id]['x'], players[id]['y'], players[id]['r'], id, Math.floor(Math.random() * 10000000000000001));
-		addShoot(s);
-	});
-
-  	socket.on('connect', function () {
-  		socket.send('hello');
-  	});
-
-	socket.on('message', function(message) {
-		if (message == 'START') {
-
-
-    var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
-    document.body.appendChild(renderer.view);
-    var stage = new PIXI.Stage;
-    requestAnimationFrame(animate);
-
-	stage.addChild(playersContainer);
-	stage.addChild(shootsContainer);
-
-	function updateLocalPlayers() {
-
-		for(var i = 0; i < playersContainer.children.length; i++) {
-			playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
-			playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
-			playersContainer.children[i].rotation = players[playersContainer.children[i].name]['r'];
-		}
-
-		for(var id in players) {
-			if (knownPlayersId.indexOf(id) == -1) {
+			//PIXI container
+			var shootsContainer= new PIXI.DisplayObjectContainer();
+			var playersContainer = new PIXI.DisplayObjectContainer();
+			
+			var socket = io.connect('http://91.121.137.144:8081');
+			socket.on('yourId', function(message) {
+				playerId = message;
+			});
+			socket.on('connect', function () {
+				socket.send('hello');
+			});
+			 	
+			//Locally save a shoot and load the sprite
+			function addShoot(s) {
 				
-				knownPlayersId.push(id);
-				var newPlayerTexture = PIXI.Texture.fromImage(players[id]['picture']);
-    			var newPlayer = new PIXI.Sprite(newPlayerTexture);
-			    newPlayer.anchor.x = 0.5;
-				newPlayer.anchor.y = 0.5;
-				newPlayer.name = id;
-			    playersContainer.addChild(newPlayer);
+				shoots[s.uniqId] = {};
+				shoots[s.uniqId] = s;
+			
+				var newShootTexture = PIXI.Texture.fromImage('shoot.png');
+				var newShoot = new PIXI.Sprite(newShootTexture);
+				newShoot.anchor.x = 0.5;
+				newShoot.anchor.y = 0.5;
+				newShoot.position.x = s.x;
+				newShoot.position.y = s.y;
+				newShoot.name = s.uniqId;
+				shootsContainer.addChild(newShoot);
 			}
-      	}
-      	
-	}
 
-	function updateLocalShoots() {
-		for(var i = 0; i < shootsContainer.children.length; i++) {
-			shootsContainer.children[i].position.x += Math.cos(shoots[shootsContainer.children[i].name]['r']);
-        	shootsContainer.children[i].position.y += Math.sin(shoots[shootsContainer.children[i].name]['r']);
-		}
-	}
+			//Locally save a player and load the sprite
+			function addPlayer(p) {
 
-    function animate() {
+				players[playerId] = {};
+				players[playerId] = p;
 
-		updateLocalPlayers();
-		updateLocalShoots();
+				var newPlayerTexture = PIXI.Texture.fromImage(p.picture);
+				var newPlayer = new PIXI.Sprite(newPlayerTexture);
+				newPlayer.anchor.x = 0.5;
+				newPlayer.anchor.y = 0.5;
+				newPlayer.position.x = p.x;
+				newPlayer.position.y = p.y;
+				newPlayer.rotation = p.r;
+				newPlayer.name = p.name;
+				playersContainer.addChild(newPlayer);
+			}
 
-        renderer.render(stage);
-        requestAnimationFrame(animate);
-    }
-		}
-    });
+			//Send a shoot
+			function iJustShoot() {
+				socket.emit('message', 'SHOOT');
+				var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
+				addShoot(s);
+			}
 
-	socket.on('alreadyConnected', function(message) {
-		alert('A player called ' + message + ' is already in game !');
-	});
+			//Receive a shoot
+			socket.on('INCOMING_SHOOT', function(id) {
+				var s = new Shoot(players[id]['x'], players[id]['y'], players[id]['r'], id, Math.floor(Math.random() * 10000000000000001));
+				addShoot(s);
+			});
 
-	socket.on('deco', function(id) {
-		//remove in knownPlayersId
-	});
+			socket.on('UPDATE_PLAYER', function(p) {
+				alert(p);
+			});
 
-	function clearCanvas() {
-		canvas = document.getElementById("myMap");
-		ctx = canvas.getContext("2d");
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-	}
+			socket.on('message', function(message) {
 
-	socket.on('allPlayers', function(data) {
-		players = JSON.parse(data);
-	});
+			   var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
+			   document.body.appendChild(renderer.view);
+			   var stage = new PIXI.Stage;
+			   requestAnimationFrame(animate);
+			
+			stage.addChild(playersContainer);
+			stage.addChild(shootsContainer);
+			
+			function updateLocalPlayers() {
+			
+				for(var i = 0; i < playersContainer.children.length; i++) {
+					playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
+					playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
+					playersContainer.children[i].rotation = players[playersContainer.children[i].name]['r'];
+				}
+			
+				for(var id in players) {
+					if (knownPlayersId.indexOf(id) == -1) {						
+						//updatePlayer();
+					}
+				}
+			     	
+			}
+			
+			function updateLocalShoots() {
+				for(var i = 0; i < shootsContainer.children.length; i++) {
+					shootsContainer.children[i].position.x += Math.cos(shoots[shootsContainer.children[i].name]['r']);
+			       	shootsContainer.children[i].position.y += Math.sin(shoots[shootsContainer.children[i].name]['r']);
+				}
+			}
+			
+			   function animate() {
+			
+				updateLocalPlayers();
+				updateLocalShoots();
+			
+			       renderer.render(stage);
+			       requestAnimationFrame(animate);
+			   }
 
-KeyboardJS.on('up,right,down,left', function keypress() {
+			   });
+			
+			socket.on('alreadyConnected', function(message) {
+				alert('A player called ' + message + ' is already in game !');
+			});
+			
+			socket.on('deco', function(id) {
+				//remove in knownPlayersId
+			});
+			
+			function clearCanvas() {
+				canvas = document.getElementById("myMap");
+				ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+			}
+			
+			socket.on('allPlayers', function(data) {
+				players = JSON.parse(data);
+			});
+			
+			KeyboardJS.on('up,right,down,left', function keypress() {
+			
+			var activeKeys = KeyboardJS.activeKeys();
+			   keys = {left:false, right:false, up:false, down:false};
+			
+			   if(activeKeys.indexOf('left') > -1) {
+				keys.left = true;
+			   }
+			   if(activeKeys.indexOf('up') > -1) {
+				keys.up = true;
+			   }
+			   if(activeKeys.indexOf('right') > -1) {
+				keys.right = true;
+			   }
+			if(activeKeys.indexOf('down') > -1) {
+				keys.down = true;
+			   }
+			   console.log('emit keyboard press');
+			 	socket.emit('keyboardPress', keys);
+			
+			}, function keyrelease(){
+			var activeKeys = KeyboardJS.activeKeys();
+			   keys = {left:false, right:false, up:false, down:false};
+			
+			   if(activeKeys.indexOf('left') > -1) {
+				keys.left = true;
+			   }
+			   if(activeKeys.indexOf('up') > -1) {
+				keys.up = true;
+			   }
+			   if(activeKeys.indexOf('right') > -1) {
+				keys.right = true;
+			   }
+			if(activeKeys.indexOf('down') > -1) {
+				keys.down = true;
+			   }
+			   console.log('emit keyboard release'); 
+			 	socket.emit('keyboardRelease', keys);
+			
+			});
+			
+			 function loadMyPlayer() {
+			   console.log('Fetching your facebook information.... ');
+			   var p = new Player(0.0, 0.0, 0.0, '', '', playerId);
+			   FB.api("/me/picture?width=50&height=50",  function(response) {
+			   	p.picture = response.data.url;
+			   	FB.api('/me', function(response) {
+			   		p.name = response.name;
+			   		addPlayer(p);
+			   		socket.emit('SEND_PLAYER', JSON.stringify(p));
+				});
+			   });
+			 }
 
-	var activeKeys = KeyboardJS.activeKeys();
-    keys = {left:false, right:false, up:false, down:false};
-
-    if(activeKeys.indexOf('left') > -1) {
-		keys.left = true;
-    }
-    if(activeKeys.indexOf('up') > -1) {
-		keys.up = true;
-    }
-    if(activeKeys.indexOf('right') > -1) {
-		keys.right = true;
-    }
-	if(activeKeys.indexOf('down') > -1) {
-		keys.down = true;
-    }
-    console.log('emit keyboard press');
-  	socket.emit('keyboardPress', keys);
- 
-}, function keyrelease(){
-	var activeKeys = KeyboardJS.activeKeys();
-    keys = {left:false, right:false, up:false, down:false};
-
-    if(activeKeys.indexOf('left') > -1) {
-		keys.left = true;
-    }
-    if(activeKeys.indexOf('up') > -1) {
-		keys.up = true;
-    }
-    if(activeKeys.indexOf('right') > -1) {
-		keys.right = true;
-    }
-	if(activeKeys.indexOf('down') > -1) {
-		keys.down = true;
-    }
-    console.log('emit keyboard release');
-  	socket.emit('keyboardRelease', keys);
-	
-});
-
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api("/me/picture?width=50&height=50",  function(response) {
-    	socket.emit('setPicture', response.data.url);
-    	FB.api('/me', function(response) {
-			socket.emit('setName', response.name);
-		});
-    });
-  }
-  
-</script>
-  </body>
+		</script>
+	</body>
 </html>
