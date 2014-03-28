@@ -66,6 +66,7 @@
 			
 			var socket = io.connect('http://91.121.137.144:8081');
 			socket.on('yourId', function(message) {
+				console.log('my id : ' + message);
 				playerId = message;
 			});
 			socket.on('connect', function () {
