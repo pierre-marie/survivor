@@ -179,6 +179,27 @@
 				}	
 			}
 			
+			
+			
+			function checkCollision() {
+				//Shoots vs Players
+				var shootPlayerCollisionDistance = 25;
+				for(var p in players) {
+					for(var s in shoots) {
+						var d = Math.sqrt(((players[p]['x'] - shoots[s]['x']) * (players[p]['x'] - shoots[s]['x'])) + ((players[p]['y'] - shoots[s]['y']) * (players[p]['y'] - shoots[s]['y'])));
+						if (d <= shootPlayerCollisionDistance) {
+							console.log(players[shoots['idPlayer']]['name'] + ' KILL ' + players[p]['name']);
+							//delete players[id];
+							//for(var i = 0; i < playersContainer.children.length; i++) {
+							//	if (playersContainer.children[i].name == id) {
+							//		playersContainer.removeChild(playersContainer.children[i]);
+							//	}
+							//}
+						}
+					}
+				}
+			}
+			
 			function updateLocalShoots() {
 				for(var i = 0; i < shootsContainer.children.length; i++) {
 					shootsContainer.children[i].position.x += Math.cos(shoots[shootsContainer.children[i].name]['r']);
@@ -187,20 +208,21 @@
 			}
 			
 			   function animate() {
-			
+
 				updateLocalPlayers();
 				updateLocalShoots();
-			
+				checkCollision();
+
 			       renderer.render(stage);
 			       requestAnimationFrame(animate);
 			   }
 
 			   });
-			
+
 			socket.on('alreadyConnected', function(message) {
 				alert('A player called ' + message + ' is already in game !');
 			});
-			
+
 			socket.on('DECO', function(id) {
 				delete players[id];
 				for(var i = 0; i < playersContainer.children.length; i++) {
@@ -209,7 +231,7 @@
 					}
 				}
 			});
-			
+
 			function clearCanvas() {
 				canvas = document.getElementById("myMap");
 				ctx = canvas.getContext("2d");
