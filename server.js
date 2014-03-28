@@ -30,28 +30,8 @@ io.sockets.on('connection', function (socket) {
 	//Receive an updated player to broadcast
 	socket.on('SEND_PLAYER', function(p) {
 		socket.broadcast.emit('UPDATE_PLAYER', p);
+		socket.emit('UPDATE_PLAYER', p);
 	});
-
-//	setInterval(function updatePos() {
-//		var speed = 10;
-//		for(var p in players) {
-//			if (players[p]['right']) {
-//		 		players[p]['r'] += 0.01 * speed;
-//		 	}
-//		 	if (players[p]['left']) {
-//		 		players[p]['r'] -= 0.01 * speed;
-//		 	}
-//		 	if (players[p]['up']) {
-//		 		players[p]['x'] += speed * Math.cos(players[p]['r']);
-//        		players[p]['y'] += speed * Math.sin(players[p]['r']);
-//		 	}
-//		 	if (players[p]['down']) {
-//		 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
-//        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
-//		 	}
-//		}
-//		sendPlayersIfNeeded();
-//	}, 20);
 
 	socket.on('keyboardPress', function(keys){
 		if (keys.right) {
