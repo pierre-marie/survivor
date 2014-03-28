@@ -63,7 +63,7 @@
 			//PIXI container
 			var shootsContainer= new PIXI.DisplayObjectContainer();
 			var playersContainer = new PIXI.DisplayObjectContainer();
-			
+
 			var socket = io.connect('http://91.121.137.144:8081');
 			socket.on('yourId', function(message) {
 				console.log('my id : ' + message);
@@ -92,10 +92,10 @@
 			//Locally save a player and load the sprite
 			function addPlayer(p) {
 
-				console.log('AddPlayer [' + p.name + '] --> [' + playerId + ']');
+				console.log('AddPlayer [' + p.name + '] --> [' + p.idPlayer + ']');
 
-				players[playerId] = {};
-				players[playerId] = p;
+				players[p.idPlayer] = {};
+				players[p.idPlayer] = p;
 
 				var newPlayerTexture = PIXI.Texture.fromImage(p.picture);
 				var newPlayer = new PIXI.Sprite(newPlayerTexture);
