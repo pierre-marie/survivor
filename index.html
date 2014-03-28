@@ -187,7 +187,7 @@
 				for(var p in players) {
 					for(var s in shoots) {
 						var d = Math.sqrt(((players[p]['x'] - shoots[s]['x']) * (players[p]['x'] - shoots[s]['x'])) + ((players[p]['y'] - shoots[s]['y']) * (players[p]['y'] - shoots[s]['y'])));
-						if (d <= shootPlayerCollisionDistance) {
+						if ((d <= shootPlayerCollisionDistance) && (players[shoots[s]['idPlayer']] != p)) {
 							console.log(players[shoots[s]['idPlayer']]['name'] + ' KILL ' + players[p]['name']);
 							//delete players[id];
 							//for(var i = 0; i < playersContainer.children.length; i++) {
