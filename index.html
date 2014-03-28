@@ -229,6 +229,10 @@
 
 			 	if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down)) {
 			 		console.log('keys combination changed');
+			 		players[playerId].left = keys.left;
+			   		players[playerId].right = keys.right;
+			   		players[playerId].up = keys.up;
+			   		players[playerId].down = keys.down;
 			 		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
 				}
 
@@ -251,7 +255,11 @@
 
 			   if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down)) {
 			   		console.log('keys combination changed');
-			 		socket.emit('SEND_PLAYER', JSON.stringify(p));
+			   		players[playerId].left = keys.left;
+			   		players[playerId].right = keys.right;
+			   		players[playerId].up = keys.up;
+			   		players[playerId].down = keys.down;
+			 		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
 			   }
 
 			});
