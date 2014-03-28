@@ -297,7 +297,7 @@
 			 function loadMyPlayer() {
 
 			   var p = new Player(0.0, 0.0, 0.0, '', '', playerId);
-			   FB.api("/me/picture?width=50&height=50",  function(response) {
+			   FB.api("/me/picture?width=75&height=75",  function(response) {
 			   	p.picture = response.data.url;
 			   	FB.api('/me', function(response) {
 			   		p.name = response.name;
