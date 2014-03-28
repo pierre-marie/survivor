@@ -66,7 +66,6 @@
 
 			var socket = io.connect('http://91.121.137.144:8081');
 			socket.on('yourId', function(message) {
-				console.log('my id : ' + message);
 				playerId = message;
 			});
 			socket.on('connect', function () {
@@ -91,8 +90,6 @@
 
 			//Locally save a player and load the sprite
 			function addPlayer(p) {
-
-				console.log('AddPlayer [' + p.name + '] --> [' + p.idPlayer + ']');
 
 				players[p.idPlayer] = {};
 				players[p.idPlayer] = p;
@@ -127,15 +124,13 @@
 				if (typeof players[p['idPlayer']] == 'undefined') {
 
 					//Save unknown player
-					console.log('Add -> ' + p['name']);
 					players[p['idPlayer']] = {};
 					var np = new Player(p['x'], p['y'], p['r'], p['picture'], p['name'], p['idPlayer']);
 					addPlayer(np);
 				}
 				else {
-					//Update player
-					console.log('Update -> ' + players[p['idPlayer']].name);
 
+					//Update player
 					players[p['idPlayer']].x = p['x'];
 					players[p['idPlayer']].y = p['y'];
 					players[p['idPlayer']].r = p['r'];
@@ -144,8 +139,7 @@
 					players[p['idPlayer']].up = p['up'];
 					players[p['idPlayer']].down = p['down'];
 				}
-				
-				console.log(players);
+
 			});
 
 			socket.on('message', function(message) {
@@ -276,7 +270,7 @@
 			});
 
 			 function loadMyPlayer() {
-			   console.log('Fetching your facebook information.... ');
+
 			   var p = new Player(0.0, 0.0, 0.0, '', '', playerId);
 			   FB.api("/me/picture?width=50&height=50",  function(response) {
 			   	p.picture = response.data.url;
