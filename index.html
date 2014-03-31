@@ -102,12 +102,12 @@
 				newPlayer.anchor.y = 0.5;
 				newPlayer.scale.x = 0.5;
 				newPlayer.scale.y = 0.5;
-				newPlayer.position.x = p.x - 20;
+				newPlayer.position.x = p.x;
 				newPlayer.position.y = p.y;
 				newPlayer.rotation = p.r;
 				newPlayer.name = p.idPlayer;
 				playersContainer.addChild(newPlayer);
-				
+
 				var newSpaceshipTexture = PIXI.Texture.fromImage('spaceship.png');
 				var newSpaceship = new PIXI.Sprite(newSpaceshipTexture);
 				newSpaceship.anchor.x = 0.5;
