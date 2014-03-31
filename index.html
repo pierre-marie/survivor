@@ -42,7 +42,6 @@
 		</script>
 		<div id="fb-root"></div>
 		<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-		<button onclick="iJustShoot()">shoot</button>
 		<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 			<input type="hidden" name="cmd" value="_s-xclick">
 			<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
@@ -276,9 +275,14 @@
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 			}
 			
-			KeyboardJS.on('up,right,down,left', function keypress() {
+			KeyboardJS.on('up,right,down,left,space', function keypress() {
 			
 			var activeKeys = KeyboardJS.activeKeys();
+			
+			if(activeKeys.indexOf('space') > -1) {
+				iJustShoot();
+			}
+			
 			   keys = {left:false, right:false, up:false, down:false};
 			
 			   if(activeKeys.indexOf('left') > -1) {

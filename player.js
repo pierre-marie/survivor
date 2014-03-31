@@ -12,4 +12,5 @@ function Player(_x, _y, _r, _picture, _name, _idPlayer) {
 	this.right = false;
 	this.up = false;
 	this.down = false;
+	this.space = false;
 }
