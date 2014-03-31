@@ -236,9 +236,10 @@
 			}
 			
 			function updateLocalShoots() {
+				var shootSpeed = 10;
 				for(var i = 0; i < shootsContainer.children.length; i++) {
-					shootsContainer.children[i].position.x += Math.cos(shoots[shootsContainer.children[i].name]['r']);
-			       	shootsContainer.children[i].position.y += Math.sin(shoots[shootsContainer.children[i].name]['r']);
+					shootsContainer.children[i].position.x += (Math.cos(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
+			       	shootsContainer.children[i].position.y += (Math.sin(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
 			       	shoots[shootsContainer.children[i].name]['x'] = shootsContainer.children[i].position.x;
 			       	shoots[shootsContainer.children[i].name]['y'] = shootsContainer.children[i].position.y;
 				}
