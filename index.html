@@ -80,7 +80,7 @@
 				
 				shoots[s.uniqId] = {};
 				shoots[s.uniqId] = s;
-			
+
 				var newShootTexture = PIXI.Texture.fromImage('shoot.png');
 				var newShoot = new PIXI.Sprite(newShootTexture);
 				newShoot.anchor.x = 0.5;
@@ -121,7 +121,7 @@
 
 				var pName = new PIXI.Text(p.name, {font:"9px Arial", fill:"white"});
 				playersNamesContainer.addChild(pName);
-				
+
 				var pTime = new PIXI.Text(p.timeAlive, {font:"9px Arial", fill:"white"});
 				playersTimeContainer.addChild(pTime);
 			}
