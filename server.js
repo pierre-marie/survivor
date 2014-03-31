@@ -5,7 +5,6 @@ io.sockets.on('connection', function (socket) {
 
 	console.log(socket.id + ' connect');
 	socket.emit('message', 'Vous êtes bien connecté !');
-	socket.emit('yourId', socket.id);
 
 	socket.on('message', function(message) {
 

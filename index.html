@@ -67,13 +67,11 @@
 			var playersTimeContainer = new PIXI.DisplayObjectContainer();
 
 			var socket = io.connect('http://91.121.137.144:8081');
-			socket.on('yourId', function(message) {
-				playerId = message;
-			});
+
 			socket.on('connect', function () {
-				socket.send('hello');
+				playerId = socket.id;
 			});
-			 	
+
 			//Locally save a shoot and load the sprite
 			function addShoot(s) {
 				
@@ -139,7 +137,7 @@
 			});
 
 			socket.on('UPDATE_PLAYER', function(data) {
-				
+
 				var p = JSON.parse(data);
 				if (typeof players[p['idPlayer']] == 'undefined') {
 
