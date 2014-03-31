@@ -63,6 +63,7 @@
 			//PIXI container
 			var shootsContainer= new PIXI.DisplayObjectContainer();
 			var playersContainer = new PIXI.DisplayObjectContainer();
+			var spaceshipsContainer = new PIXI.DisplayObjectContainer();
 
 			var socket = io.connect('http://91.121.137.144:8081');
 			socket.on('yourId', function(message) {
@@ -94,8 +95,7 @@
 				players[p.idPlayer] = {};
 				players[p.idPlayer] = p;
 
-				//var newPlayerTexture = PIXI.Texture.fromImage(p.picture);
-				var newPlayerTexture = PIXI.Texture.fromImage('spaceship.png');
+				var newPlayerTexture = PIXI.Texture.fromImage(p.picture);
 				var newPlayer = new PIXI.Sprite(newPlayerTexture);
 				newPlayer.anchor.x = 0.5;
 				newPlayer.anchor.y = 0.5;
@@ -104,6 +104,16 @@
 				newPlayer.rotation = p.r;
 				newPlayer.name = p.idPlayer;
 				playersContainer.addChild(newPlayer);
+				
+				var newSpaceshipTexture = PIXI.Texture.fromImage('spaceship.png');
+				var newSpaceship = new PIXI.Sprite(newSpaceshipTexture);
+				newSpaceship.anchor.x = 0.5;
+				newSpaceship.anchor.y = 0.5;
+				newSpaceship.position.x = p.x;
+				newSpaceship.position.y = p.y;
+				newSpaceship.rotation = p.r;
+				newSpaceship.name = p.idPlayer;
+				spaceshipsContainer.addChild(newSpaceship);
 			}
 
 			//Send a shoot
@@ -151,6 +161,7 @@
 			   requestAnimationFrame(animate);
 			
 			stage.addChild(playersContainer);
+			stage.addChild(spaceshipsContainer);
 			stage.addChild(shootsContainer);
 			
 			function updateLocalPlayers() {
@@ -177,6 +188,10 @@
 					playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
 					playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
 					playersContainer.children[i].rotation = players[playersContainer.children[i].name]['r'];
+					
+					spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x'];
+					spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y'];
+					spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
 				}	
 			}
 			
