@@ -174,12 +174,7 @@
 			stage.addChild(spaceshipsContainer);
 			stage.addChild(playersNamesContainer);
 			stage.addChild(shootsContainer);
-			
-			function updateLifeTime() {
-				for(var i = 0; i < playersContainer.children.length; i++) {
-					players[playersContainer.children[i].name]['timeAlive'] += 1;
-				}
-			}
+
 
 			function updateLocalPlayers() {
 			
@@ -337,7 +332,11 @@
 			   FB.api("/me/picture?width=75&height=75",  function(response) {
 			   	p.picture = response.data.url;
 			   	FB.api('/me', function(response) {
-			   		setInterval(updateLifeTime(), 1000);
+			   		setInterval(function() {
+			   			for(var i = 0; i < playersContainer.children.length; i++) {
+							players[playersContainer.children[i].name]['timeAlive'] += 1;
+						}
+			   		}, 1000);
 			   		p.name = response.name;
 			   		addPlayer(p);
 			   		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
