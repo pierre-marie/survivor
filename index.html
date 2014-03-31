@@ -206,7 +206,7 @@
 
 					playersTimeContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
 					playersTimeContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 90;
-					playersTimeContainer.children[i].text =  players[playersContainer.children[i].name]['timeAlive'];
+					playersTimeContainer.children[i].setText(players[playersContainer.children[i].name]['timeAlive']);
 
 					spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x'];
 					spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y'];
