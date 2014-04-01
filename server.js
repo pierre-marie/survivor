@@ -4,7 +4,6 @@ var io = require('socket.io').listen(8081, { log: false });
 io.sockets.on('connection', function (socket) {
 
 	console.log(socket.id + ' connect');
-	socket.emit('message', 'Vous êtes bien connecté !');
 
 	socket.on('message', function(message) {
 
