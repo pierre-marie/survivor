@@ -196,12 +196,12 @@
 	        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
 			 	}
 			 	if (players[p]['b']) {
-			 		players[p]['x'] += speed * Math.cos(players[p]['r'] - 90);
-	        		players[p]['y'] += speed * Math.sin(players[p]['r'] - 90);
+			 		players[p]['x'] += speed * Math.cos(players[p]['r'] - 45);
+	        		players[p]['y'] += speed * Math.sin(players[p]['r'] - 45);
 			 	}
 			 	if (players[p]['n']) {
-			 		players[p]['x'] += speed * Math.cos(players[p]['r'] + 90);
-	        		players[p]['y'] += speed * Math.sin(players[p]['r'] + 90);
+			 		players[p]['x'] += speed * Math.cos(players[p]['r'] + 45);
+	        		players[p]['y'] += speed * Math.sin(players[p]['r'] + 45);
 			 	}
 			}
 
