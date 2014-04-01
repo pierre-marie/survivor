@@ -72,7 +72,7 @@
 			var socket = io.connect('http://91.121.137.144:8081');
 
 			socket.on('connect', function () {
-				//playerId = socket.id;
+				socket.emit('MY_ID', playerId);
 			});
 
 			//Locally save a shoot and load the sprite
@@ -269,12 +269,16 @@
 			});
 
 			socket.on('DECO', function(id) {
-				delete players[id];
+
 				for(var i = 0; i < playersContainer.children.length; i++) {
 					if (playersContainer.children[i].name == id) {
 						playersContainer.removeChild(playersContainer.children[i]);
+						playersNamesContainer.removeChild(playersNamesContainer.children[i]);
+						playersTimeContainer.removeChild(playersTimeContainer.children[i]);
+						spaceshipsContainer.removeChild(spaceshipsContainer.children[i]);
 					}
-				}
+				}				
+				delete players[id];
 			});
 
 			function clearCanvas() {

@@ -3,11 +3,19 @@ var io = require('socket.io').listen(8081, { log: false });
 
 io.sockets.on('connection', function (socket) {
 
+	var correspondance = {};
+
 	console.log(socket.id + ' connect');
 	socket.emit('message', 'Vous êtes bien connecté !');
 
 	socket.on('message', function(message) {
     });
+
+	socket.on('MY_ID', function(pId) {
+		if (typeof correspondance[socket.id] == 'undefined') {
+			correspondance[socket.id] = {};
+			correspondance[socket.id]['playerId'] = pId;		
+	});
 
 	//Receive a shoot to broadcast
 	socket.on('SHOOT', function(pId) {
@@ -22,7 +30,8 @@ io.sockets.on('connection', function (socket) {
 
   	socket.on('disconnect', function () { 
   		console.log(socket.id + ' disconnect');
-  		socket.broadcast.emit('DECO', socket.id);
-  		socket.emit('DECO', socket.id);
+  		socket.broadcast.emit('DECO', correspondance[socket.id]['playerId']);
+  		socket.emit('DECO', correspondance[socket.id]['playerId']);
+  		delete correspondance[socket.id];
   	});
 });
