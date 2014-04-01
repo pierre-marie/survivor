@@ -14,7 +14,8 @@ io.sockets.on('connection', function (socket) {
 	socket.on('MY_ID', function(pId) {
 		if (typeof correspondance[socket.id] == 'undefined') {
 			correspondance[socket.id] = {};
-			correspondance[socket.id]['playerId'] = pId;		
+		}
+		correspondance[socket.id]['playerId'] = pId;		
 	});
 
 	//Receive a shoot to broadcast
