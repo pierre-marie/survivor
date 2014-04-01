@@ -195,6 +195,14 @@
 			 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
 	        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
 			 	}
+			 	if (players[p]['b']) {
+			 		players[p]['x'] += speed * Math.cos(players[p]['r'] - 90);
+	        		players[p]['y'] += speed * Math.sin(players[p]['r'] - 90);
+			 	}
+			 	if (players[p]['n']) {
+			 		players[p]['x'] += speed * Math.cos(players[p]['r'] + 90);
+	        		players[p]['y'] += speed * Math.sin(players[p]['r'] + 90);
+			 	}
 			}
 
 				for(var i = 0; i < playersContainer.children.length; i++) {
@@ -275,7 +283,7 @@
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 			}
 			
-			KeyboardJS.on('up,right,down,left,space', function keypress() {
+			KeyboardJS.on('up,right,down,left,space,b,n', function keypress() {
 			
 			var activeKeys = KeyboardJS.activeKeys();
 			
@@ -283,7 +291,7 @@
 				iJustShoot();
 			}
 
-			   keys = {left:false, right:false, up:false, down:false};
+			   keys = {left:false, right:false, up:false, down:false, b:false, n:false};
 			
 			   if(activeKeys.indexOf('left') > -1) {
 				keys.left = true;
@@ -294,21 +302,29 @@
 			   if(activeKeys.indexOf('right') > -1) {
 				keys.right = true;
 			   }
-			if(activeKeys.indexOf('down') > -1) {
+			   if(activeKeys.indexOf('down') > -1) {
 				keys.down = true;
 			   }
+			   if(activeKeys.indexOf('b') > -1) {
+				keys.b = true;
+			   }
+	 		   if(activeKeys.indexOf('n') > -1) {
+				keys.n = true;
+			   }
 
-			 	if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down)) {
+			 	if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down) || (players[playerId]['b'] != keys.b) || (players[playerId]['n'] != keys.n)) {
 			 		players[playerId].left = keys.left;
 			   		players[playerId].right = keys.right;
 			   		players[playerId].up = keys.up;
 			   		players[playerId].down = keys.down;
+			   		players[playerId].b = keys.b;
+			   		players[playerId].n = keys.n;
 			 		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
 				}
 
 			}, function keyrelease(){
 			var activeKeys = KeyboardJS.activeKeys();
-			   keys = {left:false, right:false, up:false, down:false};
+			   keys = {left:false, right:false, up:false, down:false, b:false, n:false};
 
 			   if(activeKeys.indexOf('left') > -1) {
 				keys.left = true;
@@ -319,17 +335,25 @@
 			   if(activeKeys.indexOf('right') > -1) {
 				keys.right = true;
 			   }
-			if(activeKeys.indexOf('down') > -1) {
+			   if(activeKeys.indexOf('down') > -1) {
 				keys.down = true;
 			   }
+			   if(activeKeys.indexOf('b') > -1) {
+				keys.b = true;
+			   }
+	 		   if(activeKeys.indexOf('n') > -1) {
+				keys.n = true;
+			   }
 
-			   if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down)) {
+			   
 			   		players[playerId].left = keys.left;
 			   		players[playerId].right = keys.right;
 			   		players[playerId].up = keys.up;
 			   		players[playerId].down = keys.down;
+			   		players[playerId].b = keys.b;
+			   		players[playerId].n = keys.n;
 			 		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
-			   }
+			   
 
 			});
 

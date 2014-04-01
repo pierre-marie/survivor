@@ -13,4 +13,6 @@ function Player(_x, _y, _r, _picture, _name, _idPlayer) {
 	this.up = false;
 	this.down = false;
 	this.space = false;
+	this.b = false;
+	this.n = false;
 }
