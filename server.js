@@ -7,11 +7,12 @@ io.sockets.on('connection', function (socket) {
 	socket.emit('message', 'Vous êtes bien connecté !');
 
 	socket.on('message', function(message) {
-
-        if (message == 'SHOOT') {
-        	socket.broadcast.emit('INCOMING_SHOOT', socket.id);
-        }
     });
+
+	//Receive a shoot to broadcast
+	socket.on('SHOOT', function(pId) {
+		socket.broadcast.emit('INCOMING_SHOOT', pId);
+	});
 
 	//Receive an updated player to broadcast
 	socket.on('SEND_PLAYER', function(p) {
