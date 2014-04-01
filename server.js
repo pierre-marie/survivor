@@ -1,5 +1,6 @@
-//DEBUG// var io = require('socket.io').listen(8081);
-var io = require('socket.io').listen(8081, { log: false });
+//DEBUG
+var io = require('socket.io').listen(8081);
+//var io = require('socket.io').listen(8081, { log: false });
 
 io.sockets.on('connection', function (socket) {
 
