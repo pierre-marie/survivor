@@ -52,6 +52,9 @@
 		<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
 		<script>
 
+			//Load explosion frames
+
+
 			//myPlayer socket id
 			var playerId = Math.floor(Math.random() * 10000000000000001); //a changer
 
@@ -220,7 +223,7 @@
 						//if ((d <= shootPlayerCollisionDistance) && (shoots[s]['idPlayer'] != p)) {
 						if (d <= shootPlayerCollisionDistance) {
 							console.log(players[shoots[s]['idPlayer']]['name'] + ' KILL ' + players[p]['name']);
-							//delete players[id];
+							players[p]['timeAlive'] = 0;
 							//for(var i = 0; i < playersContainer.children.length; i++) {
 							//	if (playersContainer.children[i].name == id) {
 							//		playersContainer.removeChild(playersContainer.children[i]);
@@ -230,7 +233,7 @@
 					}
 				}
 			}
-			
+
 			function updateLocalShoots() {
 				var shootSpeed = 5;
 				for(var i = 0; i < shootsContainer.children.length; i++) {
