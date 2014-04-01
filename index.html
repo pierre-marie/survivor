@@ -216,7 +216,7 @@
 
 			function checkCollision() {
 				//Shoots vs Players
-				var shootPlayerCollisionDistance = 25;
+				var shootPlayerCollisionDistance = 35;
 				for(var p in players) {
 					for(var s in shoots) {
 						var d = Math.sqrt(((players[p]['x'] - shoots[s]['x']) * (players[p]['x'] - shoots[s]['x'])) + ((players[p]['y'] - shoots[s]['y']) * (players[p]['y'] - shoots[s]['y'])));
