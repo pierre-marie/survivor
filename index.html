@@ -212,28 +212,28 @@
 				 	//}
 				}
 				//Move others depending on me
-//				if (typeof players[playerId] != 'undefined') {
-//					for (var p in players) {
-//						if (p != playerId) {
-//							if (players[playerId]['up']) {
-//								players[p]['x'] -= speed * Math.cos(players[playerId]['r']);
-//					        	players[p]['y'] -= speed * Math.sin(players[playerId]['r']);
-//							}
-//							if (players[playerId]['down']) {
-//							 	players[p]['x'] += speed * Math.cos(players[playerId]['r']);
-//					        	players[p]['y'] += speed * Math.sin(players[playerId]['r']);
-//							}
-//							if (players[playerId]['b']) {
-//								players[p]['x'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
-//					        	players[p]['y'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
-//							}
-//							if (players[playerId]['n']) {
-//								players[p]['x'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
-//					        	players[p]['y'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
-//							}
-//						}
-//					}
-//				}
+				if (typeof players[playerId] != 'undefined') {
+					for (var p in players) {
+						if (p != playerId) {
+							if (players[playerId]['up']) {
+								players[p]['x'] -= speed * Math.cos(players[playerId]['r']);
+					        	players[p]['y'] -= speed * Math.sin(players[playerId]['r']);
+							}
+							if (players[playerId]['down']) {
+							 	players[p]['x'] += speed * Math.cos(players[playerId]['r']);
+					        	players[p]['y'] += speed * Math.sin(players[playerId]['r']);
+							}
+							if (players[playerId]['b']) {
+								players[p]['x'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
+					        	players[p]['y'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
+							}
+							if (players[playerId]['n']) {
+								players[p]['x'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
+					        	players[p]['y'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
+							}
+						}
+					}
+				}
 
 				//Replace graphic elements
 				for(var i = 0; i < playersContainer.children.length; i++) {
