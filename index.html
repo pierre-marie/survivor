@@ -189,6 +189,17 @@
 			   var stage = new PIXI.Stage;
 			   requestAnimationFrame(animate);
 			
+			//test
+				var zero = PIXI.Texture.fromImage('test.jpg');
+				var newZero = new PIXI.Sprite(zero);
+				newZero.anchor.x = 0.5;
+				newZero.anchor.y = 0.5;
+				newZero.position.x = 0;
+				newZero.position.y = 0;
+				stage.addChild(newZero);
+			//
+			
+			
 			stage.addChild(playersContainer);
 			stage.addChild(spaceshipsContainer);
 			stage.addChild(playersNamesContainer);
@@ -197,14 +208,7 @@
 			stage.addChild(playersYContainer);
 			stage.addChild(shootsContainer);
 
-				//test
-				var zero = PIXI.Texture.fromImage('test.jpg');
-				var newZero = new PIXI.Sprite(zero);
-				newZero.anchor.x = 0.5;
-				newZero.anchor.y = 0.5;
-				newZero.position.x = 0;
-				newZero.position.y = 0;
-				stage.addChild(newZero);
+				
 
 			function updateLocalPlayers() {
 
