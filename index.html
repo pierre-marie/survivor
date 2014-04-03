@@ -197,6 +197,14 @@
 			stage.addChild(playersYContainer);
 			stage.addChild(shootsContainer);
 
+				//0,0 for DEBUG
+				var zero = PIXI.Texture.fromImage('shoot.png');
+				var newZero = new PIXI.Sprite(zero);
+				newZero.anchor.x = 0.5;
+				newZero.anchor.y = 0.5;
+				newZero.position.x = 0;
+				newZero.position.y = 0;
+				stage.addChild(newZero);
 
 			function updateLocalPlayers() {
 			
