@@ -79,6 +79,7 @@
 			var playersXContainer = new PIXI.DisplayObjectContainer();
 			var playersYContainer = new PIXI.DisplayObjectContainer();
 			var backgroundContainer = new PIXI.DisplayObjectContainer();
+			var friendsIndicatorsContainer = new PIXI.DisplayObjectContainer();
 
 			var socket = io.connect('http://91.121.137.144:8081');
 
@@ -129,6 +130,15 @@
 				newSpaceship.rotation = p.r;
 				newSpaceship.name = p.idPlayer;
 				spaceshipsContainer.addChild(newSpaceship);
+
+				var newFriendIndicatorTexture = PIXI.Texture.fromImage('shoot.png');
+				var newFriendIndicator = new PIXI.Sprite(newFriendIndicatorTexture);
+				newFriendIndicator.anchor.x = 0;
+				newFriendIndicator.anchor.y = 0;
+				newFriendIndicator.position.x = p.x;
+				newFriendIndicator.position.y = p.y;
+				newFriendIndicator.name = p.idPlayer;
+				friendsIndicatorsContainer.addChild(newSpaceship);
 
 				var pName = new PIXI.Text(p.name, {font:"9px Arial", fill:"white"});
 				playersNamesContainer.addChild(pName);
@@ -208,6 +218,7 @@
 			stage.addChild(playersXContainer);
 			stage.addChild(playersYContainer);
 			stage.addChild(shootsContainer);
+			stage.addChild(friendsIndicatorsContainer);
 
 			function updateLocalPlayers() {
 
@@ -369,11 +380,43 @@
 				}
 			}
 
+			function updateFriendsIndicator() {
+
+				//my player
+				var xa = players[playerId]['x'];
+				var ya = players[playerId]['y'];
+
+				for(var i = 0; i < playersContainer.children.length; i++) {
+					if (playersContainer.children[i].name != playerId) {
+
+						//friend
+						var xb = players[playersContainer.children[i].name]['x'];
+						var yb = players[playersContainer.children[i].name]['y'];
+				
+						var a = (yb - ya) / (xb - xa);
+						var b = ya - (a * xa);
+						
+						//y = 0
+						if ((yb < ya) && (xb >= 0) && (xb <= $(window).width())) {
+							//friendsIndicatorsContainer.children[i].position.x = ;
+							//friendsIndicatorsContainer.children[i].position.y = 0;
+						}
+						//x = 0
+						if ((xb < xa) && (yb >= 0) && (yb <= $(window).height())) {
+							friendsIndicatorsContainer.children[i].position.x = 0;
+							friendsIndicatorsContainer.children[i].position.y = b;
+						}
+					}
+				}
+					
+			}
+
 			   function animate() {
 
 				updateLocalPlayers();
 				updateLocalShoots();
 				checkCollision();
+				updateFriendsIndicator();
 
 			       renderer.render(stage);
 			       requestAnimationFrame(animate);
