@@ -238,8 +238,10 @@
 				//Replace graphic elements
 				for(var i = 0; i < playersContainer.children.length; i++) {
 
-					playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
-					playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
+					if (playersContainer.children[i].name != playerId) {
+						playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
+						playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
+					}
 
 					playersNamesContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
 					playersNamesContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 60;
