@@ -152,8 +152,8 @@
 				else {
 
 					//Update player
-					players[p['idPlayer']].x = p['x'];
-					players[p['idPlayer']].y = p['y'];
+					//players[p['idPlayer']].x = p['x'];
+					//players[p['idPlayer']].y = p['y'];
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
 					players[p['idPlayer']].right = p['right'];
@@ -181,8 +181,9 @@
 			function updateLocalPlayers() {
 			
 			var speed = 4;
+			
+			//Move others depending on their keys
 			for(var p in players) {
-				
 				if (players[p]['right']) {
 			 		players[p]['r'] += 0.01 * speed;
 			 	}
@@ -191,25 +192,45 @@
 			 	}
 			 	
 			 	if (players[p]['idPlayer'] != playerId) {
-			 	if (players[p]['up']) {
-			 		players[p]['x'] += speed * Math.cos(players[p]['r']);
-	        		players[p]['y'] += speed * Math.sin(players[p]['r']);
-			 	}
-			 	if (players[p]['down']) {
-			 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
-	        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
-			 	}
-			 	if (players[p]['b']) {
-			 		players[p]['x'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
-	        		players[p]['y'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
-			 	}
-			 	if (players[p]['n']) {
-			 		players[p]['x'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
-	        		players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
-			 	}
+				 	if (players[p]['up']) {
+				 		players[p]['x'] += speed * Math.cos(players[p]['r']);
+		        		players[p]['y'] += speed * Math.sin(players[p]['r']);
+				 	}
+				 	if (players[p]['down']) {
+				 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
+		        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
+				 	}
+				 	if (players[p]['b']) {
+				 		players[p]['x'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
+		        		players[p]['y'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
+				 	}
+				 	if (players[p]['n']) {
+				 		players[p]['x'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
+		        		players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
+				 	}
 			 	}
 			}
+			//Move others depending on me
+			for (var p in players) {
+				if (players[playerId]['up']) {
+					players[p]['x'] -= speed * Math.cos(players[p]['r']);
+		        	players[p]['y'] -= speed * Math.sin(players[p]['r']);
+				}
+				if (players[playerId]['down']) {
+				 	players[p]['x'] += speed * Math.cos(players[p]['r']);
+		        	players[p]['y'] += speed * Math.sin(players[p]['r']);
+				}
+				if players[playerId]['b']) {
+					players[p]['x'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
+		        	players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
+				}
+				if (players[playerId]['n']) {
+					players[p]['x'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
+		        	players[p]['y'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
+				}
+			}
 
+			//Replace graphic elements
 				for(var i = 0; i < playersContainer.children.length; i++) {
 					playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
 					playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
