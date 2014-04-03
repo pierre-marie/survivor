@@ -50,6 +50,13 @@
 			</form> -->
 		<script src="./KeyboardJS-master/keyboard.js"></script>
 		<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
+		
+		
+		<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
+			<div id="map" style="width:100%, height:100%; position:absolute; background-color:green;"></div>
+		</div>
+		
+		
 		<script>
 
 			//Load explosion frames
@@ -168,8 +175,8 @@
 
 			socket.on('message', function(message) {
 
-			   var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
-			   document.body.appendChild(renderer.view);
+			   var renderer = new PIXI.WebGLRenderer($(map).width(), $(map).height());
+			   document.map.appendChild(renderer.view);
 			   var stage = new PIXI.Stage;
 			   requestAnimationFrame(animate);
 			
