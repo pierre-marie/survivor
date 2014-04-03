@@ -95,8 +95,8 @@
 				var newShoot = new PIXI.Sprite(newShootTexture);
 				newShoot.anchor.x = 0.5;
 				newShoot.anchor.y = 0.5;
-				newShoot.position.x = s.x;
-				newShoot.position.y = s.y;
+				newShoot.position.x = s.x_display;
+				newShoot.position.y = s.y_display;
 				newShoot.name = s.uniqId;
 				shootsContainer.addChild(newShoot);
 			}
@@ -145,13 +145,13 @@
 			//Send a shoot
 			function iJustShoot() {
 				socket.emit('SHOOT', playerId);
-				var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
+				var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['x_display'], players[playerId]['y_display'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
 				addShoot(s);
 			}
 
 			//Receive a shoot
 			socket.on('INCOMING_SHOOT', function(id) {
-				var s = new Shoot(players[id]['x'], players[id]['y'], players[id]['r'], id, Math.floor(Math.random() * 10000000000000001));
+				var s = new Shoot(players[id]['x'], players[id]['y'], players[id]['x_display'], players[id]['y_display'], players[id]['r'], id, Math.floor(Math.random() * 10000000000000001));
 				addShoot(s);
 			});
 
@@ -344,10 +344,10 @@
 			function updateLocalShoots() {
 				var shootSpeed = 5;
 				for(var i = 0; i < shootsContainer.children.length; i++) {
-					shootsContainer.children[i].position.x += (Math.cos(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
-			       	shootsContainer.children[i].position.y += (Math.sin(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
-			       	shoots[shootsContainer.children[i].name]['x'] = shootsContainer.children[i].position.x;
-			       	shoots[shootsContainer.children[i].name]['y'] = shootsContainer.children[i].position.y;
+					shootsContainer.children[i].position.x_display += (Math.cos(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
+			       	shootsContainer.children[i].position.x_display += (Math.sin(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
+			       	shoots[shootsContainer.children[i].name]['x'] += (Math.cos(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
+			       	shoots[shootsContainer.children[i].name]['y'] += (Math.sin(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
 				}
 			}
 
