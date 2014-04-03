@@ -210,7 +210,7 @@
 				 	}
 				}
 				//Move others depending on me
-				if (typeof players[playerId] == 'undefined') {
+				if (typeof players[playerId] != 'undefined') {
 					for (var p in players) {
 						if (players[playerId]['up']) {
 							players[p]['x'] -= speed * Math.cos(players[p]['r']);
