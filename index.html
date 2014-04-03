@@ -145,7 +145,7 @@
 			//Send a shoot
 			function iJustShoot() {
 				socket.emit('SHOOT', playerId);
-				var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['x_display'], players[playerId]['y_display'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
+				var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['x_center'], players[playerId]['y_center'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
 				addShoot(s);
 			}
 
