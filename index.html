@@ -212,6 +212,7 @@
 			function updateLocalPlayers() {
 
 				var speed = 4;
+				var backgroundSpeed = 0.5;
 				//update real coord
 				for(var p in players) {
 					if (players[p]['right']) {
@@ -254,29 +255,29 @@
 								players[p]['x_display'] -= speed * Math.cos(players[playerId]['r']);
 					        	players[p]['y_display'] -= speed * Math.sin(players[playerId]['r']);
 					        	
-					        	backgroundContainer.children[0].position.x -= speed * Math.cos(players[playerId]['r']);
-					        	backgroundContainer.children[0].position.y -= speed * Math.sin(players[playerId]['r']);
+					        	backgroundContainer.children[0].position.x -= backgroundSpeed * Math.cos(players[playerId]['r']);
+					        	backgroundContainer.children[0].position.y -= backgroundSpeed * Math.sin(players[playerId]['r']);
 							}
 							if (players[playerId]['down']) {
 							 	players[p]['x_display'] += speed * Math.cos(players[playerId]['r']);
 					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r']);
 					        	
-					        	backgroundContainer.children[0].position.x += speed * Math.cos(players[playerId]['r']);
-					        	backgroundContainer.children[0].position.y += speed * Math.sin(players[playerId]['r']);
+					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r']);
+					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r']);
 							}
 							if (players[playerId]['b']) {
 								players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
 					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
 					        	
-					        	backgroundContainer.children[0].position.x += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
-					        	backgroundContainer.children[0].position.y += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
+					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r'] + (Math.PI/2));
+					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r'] + (Math.PI/2));
 							}
 							if (players[playerId]['n']) {
 								players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
 					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
 					        	
-					        	backgroundContainer.children[0].position.x += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
-					        	backgroundContainer.children[0].position.y += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
+					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r'] - (Math.PI/2));
+					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r'] - (Math.PI/2));
 							}
 						}
 					}
