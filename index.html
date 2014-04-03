@@ -279,6 +279,14 @@
 						spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y'];
 	
 						spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
+						
+						playersXContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
+						playersXContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 90;
+						playersXContainer.children[i].setText(players[playersContainer.children[i].name]['x']);
+						
+						playersYContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
+						playersYContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 105;
+						playersYContainer.children[i].setText(players[playersContainer.children[i].name]['y']);
 					}
 					else {
 						playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'];
@@ -295,15 +303,17 @@
 						spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y_center'];
 	
 						spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
-					}
-					
-						playersXContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
-						playersXContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 90;
+						
+						playersXContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'] - 40;
+						playersXContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'] + 90;
 						playersXContainer.children[i].setText(players[playersContainer.children[i].name]['x']);
 						
-						playersYContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
-						playersYContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 105;
+						playersYContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'] - 40;
+						playersYContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'] + 105;
 						playersYContainer.children[i].setText(players[playersContainer.children[i].name]['y']);
+					}
+					
+						
 
 					
 				}
