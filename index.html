@@ -152,8 +152,8 @@
 				else {
 
 					//Update player
-					//players[p['idPlayer']].x = p['x'];
-					//players[p['idPlayer']].y = p['y'];
+					players[p['idPlayer']].x = p['x'];
+					players[p['idPlayer']].y = p['y'];
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
 					players[p['idPlayer']].right = p['right'];
@@ -237,6 +237,7 @@
 
 				//Replace graphic elements
 				for(var i = 0; i < playersContainer.children.length; i++) {
+
 					playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
 					playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
 
