@@ -46,7 +46,6 @@
 		
 		
 		<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
-			<div id="map" style="width:100%, height:100%; position:absolute; background-color:green;">
 				<div id="fb-root"></div>
 				<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
 				<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -55,7 +54,6 @@
 				<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 				</form> -->
-			</div>
 		</div>
 		
 		
@@ -177,8 +175,8 @@
 
 			socket.on('message', function(message) {
 
-			   var renderer = new PIXI.WebGLRenderer($(map).width(), $(map).height());
-			   document.map.appendChild(renderer.view);
+			   var renderer = new PIXI.WebGLRenderer(document.getElementById("container").width(), document.getElementById("container").height());
+			   document.getElementById("container").appendChild(renderer.view);
 			   var stage = new PIXI.Stage;
 			   requestAnimationFrame(animate);
 			
@@ -342,12 +340,6 @@
 				}				
 				delete players[id];
 			});
-
-			function clearCanvas() {
-				canvas = document.getElementById("myMap");
-				ctx = canvas.getContext("2d");
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-			}
 			
 			KeyboardJS.on('up,right,down,left,space,b,n', function keypress() {
 			
