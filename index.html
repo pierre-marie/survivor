@@ -382,6 +382,7 @@
 
 			function updateFriendsIndicator() {
 
+			if (typeof players[playerId] != 'undefined') {
 				//my player
 				var xa = players[playerId]['x'];
 				var ya = players[playerId]['y'];
@@ -408,7 +409,7 @@
 						}
 					}
 				}
-					
+			}	
 			}
 
 			   function animate() {
