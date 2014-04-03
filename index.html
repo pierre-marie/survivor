@@ -76,6 +76,8 @@
 			var spaceshipsContainer = new PIXI.DisplayObjectContainer();
 			var playersNamesContainer = new PIXI.DisplayObjectContainer();
 			var playersTimeContainer = new PIXI.DisplayObjectContainer();
+			var playersXContainer = new PIXI.DisplayObjectContainer();
+			var playersYContainer = new PIXI.DisplayObjectContainer();
 
 			var socket = io.connect('http://91.121.137.144:8081');
 
@@ -132,6 +134,12 @@
 
 				var pTime = new PIXI.Text(p.timeAlive, {font:"9px Arial", fill:"white"});
 				playersTimeContainer.addChild(pTime);
+				
+				var pX = new PIXI.Text(p.x, {font:"9px Arial", fill:"white"});
+				playersXContainer.addChild(pX);
+				
+				var pY = new PIXI.Text(p.y, {font:"9px Arial", fill:"white"});
+				playersXContainer.addChild(pY);
 			}
 
 			//Send a shoot
@@ -185,6 +193,8 @@
 			stage.addChild(spaceshipsContainer);
 			stage.addChild(playersNamesContainer);
 			stage.addChild(playersTimeContainer);
+			stage.addChild(playersXContainer);
+			stage.addChild(playersYContainer);
 			stage.addChild(shootsContainer);
 
 
@@ -251,33 +261,41 @@
 						playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
 						
 						playersNamesContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
-					playersNamesContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 60;
-
-					playersTimeContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
-					playersTimeContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 75;
-					playersTimeContainer.children[i].setText(players[playersContainer.children[i].name]['timeAlive']);
-
-					spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x'];
-					spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y'];
-
-					spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
+						playersNamesContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 60;
+	
+						playersTimeContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
+						playersTimeContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 75;
+						playersTimeContainer.children[i].setText(players[playersContainer.children[i].name]['timeAlive']);
+	
+						spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x'];
+						spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y'];
+	
+						spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
 					}
 					else {
 						playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'];
 						playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'];
 						
 						playersNamesContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'] - 40;
-					playersNamesContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'] + 60;
-
-					playersTimeContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'] - 40;
-					playersTimeContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'] + 75;
-					playersTimeContainer.children[i].setText(players[playersContainer.children[i].name]['timeAlive']);
-
-					spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x_center'];
-					spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y_center'];
-
-					spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
+						playersNamesContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'] + 60;
+	
+						playersTimeContainer.children[i].position.x = players[playersContainer.children[i].name]['x_center'] - 40;
+						playersTimeContainer.children[i].position.y = players[playersContainer.children[i].name]['y_center'] + 75;
+						playersTimeContainer.children[i].setText(players[playersContainer.children[i].name]['timeAlive']);
+	
+						spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x_center'];
+						spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y_center'];
+	
+						spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
 					}
+					
+						playersXContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
+						playersXContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 90;
+						playersXContainer.children[i].setText(players[playersContainer.children[i].name]['x']);
+						
+						playersYContainer.children[i].position.x = players[playersContainer.children[i].name]['x'] - 40;
+						playersYContainer.children[i].position.y = players[playersContainer.children[i].name]['y'] + 105;
+						playersYContainer.children[i].setText(players[playersContainer.children[i].name]['y']);
 
 					
 				}
