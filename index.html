@@ -175,7 +175,7 @@
 			socket.on('message', function(message) {
 
 			   var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
-			   document.container.appendChild(renderer.view);
+			   document.getElementById('container').appendChild(renderer.view);
 			   var stage = new PIXI.Stage;
 			   requestAnimationFrame(animate);
 			
