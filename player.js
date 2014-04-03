@@ -2,6 +2,8 @@
 function Player(_x, _y, _r, _picture, _name, _idPlayer) {
 
 	this.timeAlive = 0;
+	this.x_center = _x;
+	this.y_center = _y;
 	this.x = _x;
 	this.y = _y;
 	this.r = _r;

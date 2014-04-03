@@ -238,7 +238,6 @@
 				//Replace graphic elements
 				for(var i = 0; i < playersContainer.children.length; i++) {
 
-if (playersContainer.children[i].name != playerId) {
 					playersContainer.children[i].position.x = players[playersContainer.children[i].name]['x'];
 					playersContainer.children[i].position.y = players[playersContainer.children[i].name]['y'];
 
@@ -251,7 +250,7 @@ if (playersContainer.children[i].name != playerId) {
 
 					spaceshipsContainer.children[i].position.x = players[spaceshipsContainer.children[i].name]['x'];
 					spaceshipsContainer.children[i].position.y = players[spaceshipsContainer.children[i].name]['y'];
-}
+
 					spaceshipsContainer.children[i].rotation = players[spaceshipsContainer.children[i].name]['r'];
 				}
 			}
