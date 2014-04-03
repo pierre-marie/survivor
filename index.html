@@ -189,14 +189,6 @@
 				 	if (players[p]['left']) {
 				 		players[p]['r'] -= 0.01 * speed;
 				 	}
-				 	if (players[p]['b']) {
-					 	players[p]['x'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
-			        	players[p]['y'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
-					}
-					if (players[p]['n']) {
-						players[p]['x'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
-			        	players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
-					}
 
 				 	if (players[p]['idPlayer'] != playerId) {
 					 	if (players[p]['up']) {
@@ -207,6 +199,14 @@
 					 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
 			        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
 					 	}
+					 	if (players[p]['b']) {
+					 		players[p]['x'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
+			        		players[p]['y'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
+						}
+						if (players[p]['n']) {
+							players[p]['x'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
+			        		players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
+						}
 				 	}
 				}
 				//Move others depending on me
