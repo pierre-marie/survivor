@@ -169,6 +169,7 @@
 			   var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
 			   document.body.appendChild(renderer.view);
 			   var stage = new PIXI.Stage;
+			   var minimap = new PIXI.Stage;
 			   requestAnimationFrame(animate);
 			
 			stage.addChild(playersContainer);
@@ -260,6 +261,7 @@
 				checkCollision();
 
 			       renderer.render(stage);
+			       renderer.render(minimap);
 			       requestAnimationFrame(animate);
 			   }
 

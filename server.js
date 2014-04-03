@@ -9,6 +9,9 @@ io.sockets.on('connection', function (socket) {
 	console.log(socket.id + ' connect');
 	socket.emit('message', 'Vous êtes bien connecté !');
 
+	socket.join('justin bieber fans');
+    socket.broadcast.to('justin bieber fans').emit('new fan');
+
 	socket.on('message', function(message) {
     });
 
@@ -16,7 +19,9 @@ io.sockets.on('connection', function (socket) {
 		if (typeof correspondance[socket.id] == 'undefined') {
 			correspondance[socket.id] = {};
 		}
-		correspondance[socket.id]['playerId'] = pId;		
+		correspondance[socket.id]['playerId'] = pId;
+		socket.join(pId);
+		//socket.broadcast.to('justin bieber fans').emit('new fan');
 	});
 
 	//Receive a shoot to broadcast
