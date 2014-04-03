@@ -167,9 +167,11 @@
 			socket.on('message', function(message) {
 
 			   var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
+			   var rendererMinimap = new PIXI.WebGLRenderer(200, 200);
 			   document.body.appendChild(renderer.view);
+			   document.body.appendChild(rendererMinimap.view);
 			   var stage = new PIXI.Stage;
-			   var minimap = new PIXI.Stage;
+			   var minimap = new PIXI.Stage(0x34495e);
 			   requestAnimationFrame(animate);
 			
 			stage.addChild(playersContainer);
@@ -261,7 +263,7 @@
 				checkCollision();
 
 			       renderer.render(stage);
-			       renderer.render(minimap);
+			       rendererMinimap.render(minimap);
 			       requestAnimationFrame(animate);
 			   }
 
