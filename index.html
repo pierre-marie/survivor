@@ -291,21 +291,21 @@
 					}
 				}
 
-				if (players[playerId]['up']) {
-					allExceptMe.position.x -= speed * Math.cos(players[playerId]['r']);
-			      	allExceptMe.position.y -= speed * Math.sin(players[playerId]['r']);
+				if (me[playerId]['up']) {
+					allExceptMe.position.x -= speed * Math.cos(me[playerId]['r']);
+			      	allExceptMe.position.y -= speed * Math.sin(me[playerId]['r']);
 				}
-				if (players[playerId]['down']) {
-					allExceptMe.position.x += backgroundSpeed * Math.cos(players[playerId]['r']);
-					allExceptMe.position.y += backgroundSpeed * Math.sin(players[playerId]['r']);
+				if (me[playerId]['down']) {
+					allExceptMe.position.x += backgroundSpeed * Math.cos(me[playerId]['r']);
+					allExceptMe.position.y += backgroundSpeed * Math.sin(me[playerId]['r']);
 				}
-				if (players[playerId]['b']) {
-					allExceptMe.position.x += backgroundSpeed * Math.cos(players[playerId]['r'] + (Math.PI/2));
-			       	allExceptMe.position.y += backgroundSpeed * Math.sin(players[playerId]['r'] + (Math.PI/2));
+				if (me[playerId]['b']) {
+					allExceptMe.position.x += backgroundSpeed * Math.cos(me[playerId]['r'] + (Math.PI/2));
+			       	allExceptMe.position.y += backgroundSpeed * Math.sin(me[playerId]['r'] + (Math.PI/2));
 				}
-				if (players[playerId]['n']) {
-			      	allExceptMe.position.x += backgroundSpeed * Math.cos(players[playerId]['r'] - (Math.PI/2));
-			      	allExceptMe.position.y += backgroundSpeed * Math.sin(players[playerId]['r'] - (Math.PI/2));
+				if (me[playerId]['n']) {
+			      	allExceptMe.position.x += backgroundSpeed * Math.cos(me[playerId]['r'] - (Math.PI/2));
+			      	allExceptMe.position.y += backgroundSpeed * Math.sin(me[playerId]['r'] - (Math.PI/2));
 				}
 
 				//Replace graphic elements
