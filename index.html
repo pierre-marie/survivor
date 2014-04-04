@@ -400,25 +400,25 @@
 						var b = ya - (a * xa);
 						
 						//y = 0
-						if ((yb < ya) && (xb >= 0) && (xb <= $(window).width())) {
+						if (yb < ya) {
 							friendsIndicatorsContainer.children[i].position.x = b;
 							friendsIndicatorsContainer.children[i].position.y = 0;
 							friendsIndicatorsContainer.children[i].rotation = 0;
 						}
 						//x = 0
-						if ((xb < xa) && (yb >= 0) && (yb <= $(window).height())) {
+						if (xb < xa) {
 							friendsIndicatorsContainer.children[i].position.x = 0;
 							friendsIndicatorsContainer.children[i].position.y = b;
 							friendsIndicatorsContainer.children[i].rotation = -(Math.PI/2);
 						}
 						//x = $(window).width()
-						if ((xb > xa) && (yb >= 0) && (yb <= $(window).height())) {
+						if (xb > xa) {
 							friendsIndicatorsContainer.children[i].position.x = $(window).width();
 							friendsIndicatorsContainer.children[i].position.y = b;
 							friendsIndicatorsContainer.children[i].rotation = Math.PI/2;
 						}
 						//y = $(window).height()
-						if ((yb > ya) && (xb >= 0) && (xb <= $(window).width())) {
+						if (yb > ya) {
 							friendsIndicatorsContainer.children[i].position.x = ($(window).height() / a) + b;
 							friendsIndicatorsContainer.children[i].position.y = $(window).height();
 							friendsIndicatorsContainer.children[i].rotation = -Math.PI;
