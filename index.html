@@ -202,8 +202,10 @@
 						var ratioX = players[playerId]['x'] - players[playerId]['x_center'];
 						var ratioY = players[playerId]['y'] - players[playerId]['y_center'];
 						
-						players[p['idPlayer']].x_display = p['x'] * ratioX;
-						players[p['idPlayer']].y_display = p['y'] * ratioY;
+						if (ratioX != 0) && (ratioY != 0) {
+							players[p['idPlayer']].x_display = p['x'] * ratioX;
+							players[p['idPlayer']].y_display = p['y'] * ratioY;
+						}
 					}
 
 					players[p['idPlayer']].r = p['r'];
