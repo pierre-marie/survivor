@@ -188,10 +188,10 @@
 						//synch
 						var myDiffX = players[playerId]['x'] - players[playerId]['x_center'];
 						var myDiffY = players[playerId]['y'] - players[playerId]['y_center'];
-						players[p['idPlayer']].x_display = p['x'] + myRatioX;
-						players[p['idPlayer']].y_display = p['y'] + myRatioY;
+						players[p['idPlayer']].x_display = p['x'] + myDiffX;
+						players[p['idPlayer']].y_display = p['y'] + myDiffY;
 					}
-					
+
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
 					players[p['idPlayer']].right = p['right'];
