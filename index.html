@@ -22,7 +22,14 @@
 				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 				</form> -->
 
-				<div id="debug" style="background-color:white; width:300px; height:800px;"></div>
+				<div id="debug" style="background-color:white; width:300px;">
+					x : <p id="x"></p>
+					y : <p id="y"></p>
+					x_display : <p id="xdisplay"></p>
+					y_display : <p id="ydisplay"></p>
+					x_center : <p id="xcenter"></p>
+					y_center : <p id="ycenter"></p>
+				</div>
 		</div>
 
 		<script>
@@ -236,7 +243,12 @@
 
 			function updateLocalPlayers() {
 
-				document.getElementById("debug").innerHTML="<script>JSON.stringify(players)<script>";
+				document.getElementById("x").innerHTML=players[playerId]['x'];
+				document.getElementById("y").innerHTML=players[playerId]['y'];
+				document.getElementById("xdisplay").innerHTML=players[playerId]['x_display'];
+				document.getElementById("ydisplay").innerHTML=players[playerId]['y_display'];
+				document.getElementById("xcenter").innerHTML=players[playerId]['x_center'];
+				document.getElementById("ycenter").innerHTML=players[playerId]['y_center'];				
 
 				var speed = 4;
 				var backgroundSpeed = 0.2;
