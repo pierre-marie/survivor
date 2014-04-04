@@ -291,6 +291,13 @@
 					}
 				}
 
+
+				if (me[p]['right']) {
+					me[p]['r'] += 0.01 * speed;
+				}
+				if (me[p]['left']) {
+				 	me[p]['r'] -= 0.01 * speed;
+				}
 				if (me[playerId]['up']) {
 					allExceptMe.position.x -= speed * Math.cos(me[playerId]['r']);
 			      	allExceptMe.position.y -= speed * Math.sin(me[playerId]['r']);
