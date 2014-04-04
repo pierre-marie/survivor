@@ -499,14 +499,14 @@
 				keys.n = true;
 			   }
 
-			 	if ((players[playerId]['left'] != keys.left) || (players[playerId]['right'] != keys.right) || (players[playerId]['up'] != keys.up) || (players[playerId]['down'] != keys.down) || (players[playerId]['b'] != keys.b) || (players[playerId]['n'] != keys.n)) {
-			 		players[playerId].left = keys.left;
-			   		players[playerId].right = keys.right;
-			   		players[playerId].up = keys.up;
-			   		players[playerId].down = keys.down;
-			   		players[playerId].b = keys.b;
-			   		players[playerId].n = keys.n;
-			 		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
+			 	if ((me[playerId]['left'] != keys.left) || (me[playerId]['right'] != keys.right) || (me[playerId]['up'] != keys.up) || (me[playerId]['down'] != keys.down) || (me[playerId]['b'] != keys.b) || (me[playerId]['n'] != keys.n)) {
+			 		me[playerId].left = keys.left;
+			   		me[playerId].right = keys.right;
+			   		me[playerId].up = keys.up;
+			   		me[playerId].down = keys.down;
+			   		me[playerId].b = keys.b;
+			   		me[playerId].n = keys.n;
+			 		socket.emit('SEND_PLAYER', JSON.stringify(me[playerId]));
 				}
 
 			}, function keyrelease(){
@@ -532,13 +532,13 @@
 				keys.n = true;
 			   }
 
-			   		players[playerId].left = keys.left;
-			   		players[playerId].right = keys.right;
-			   		players[playerId].up = keys.up;
-			   		players[playerId].down = keys.down;
-			   		players[playerId].b = keys.b;
-			   		players[playerId].n = keys.n;
-			 		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
+			   		me[playerId].left = keys.left;
+			   		me[playerId].right = keys.right;
+			   		me[playerId].up = keys.up;
+			   		me[playerId].down = keys.down;
+			   		me[playerId].b = keys.b;
+			   		me[playerId].n = keys.n;
+			 		socket.emit('SEND_PLAYER', JSON.stringify(me[playerId]));
 			   
 
 			});
