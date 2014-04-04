@@ -185,10 +185,10 @@
 					players[p['idPlayer']].y = p['y'];
 					
 					//synchro
-					//var myRatioX = players[playerId]['x'] / players[playerId]['x_center'];
-					//var myRatioY = players[playerId]['y'] / players[playerId]['y_center'];
-					//players[p['idPlayer']].x_display = players[p['idPlayer']].x * myRatioX;
-					//players[p['idPlayer']].y_display = players[p['idPlayer']].y * myRatioY;
+					var myRatioX = p['x'] / players[playerId]['x'];
+					var myRatioY = p['y'] / players[playerId]['y'];
+					players[p['idPlayer']].x_display = players[playerId].x_display * myRatioX;
+					players[p['idPlayer']].y_display = players[playerId].y_display * myRatioY;
 
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
@@ -245,26 +245,26 @@
 					 	if (players[p]['up']) {
 					 		players[p]['x'] += speed * Math.cos(players[p]['r']);
 			        		players[p]['y'] += speed * Math.sin(players[p]['r']);
-			        		players[p]['x_display'] += speed * Math.cos(players[p]['r']);
-			        		players[p]['y_display'] += speed * Math.sin(players[p]['r']);
+			        		//players[p]['x_display'] += speed * Math.cos(players[p]['r']);
+			        		//players[p]['y_display'] += speed * Math.sin(players[p]['r']);
 					 	}
 					 	if (players[p]['down']) {
 					 		players[p]['x'] -= speed * Math.cos(players[p]['r']);
 			        		players[p]['y'] -= speed * Math.sin(players[p]['r']);
-			        		players[p]['x_display'] -= speed * Math.cos(players[p]['r']);
-			        		players[p]['y_display'] -= speed * Math.sin(players[p]['r']);
+			        		//players[p]['x_display'] -= speed * Math.cos(players[p]['r']);
+			        		//players[p]['y_display'] -= speed * Math.sin(players[p]['r']);
 					 	}
 					 	if (players[p]['b']) {
 					 		players[p]['x'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
 			        		players[p]['y'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
-			        		players[p]['x_display'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
-			        		players[p]['y_display'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
+			        		//players[p]['x_display'] += speed * Math.cos(players[p]['r'] - (Math.PI/2));
+			        		//players[p]['y_display'] += speed * Math.sin(players[p]['r'] - (Math.PI/2));
 						}
 						if (players[p]['n']) {
 							players[p]['x'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
 			        		players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
-			        		players[p]['x_display'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
-			        		players[p]['y_display'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
+			        		//players[p]['x_display'] += speed * Math.cos(players[p]['r'] + (Math.PI/2));
+			        		//players[p]['y_display'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
 						}
 				}
 				//Move others depending on me
