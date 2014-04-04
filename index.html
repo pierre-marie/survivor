@@ -200,8 +200,8 @@
 						var oldX = players[p['idPlayer']].x_display;
 						var oldY = players[p['idPlayer']].y_display;
 
-						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'] + distX;
-						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'] + distY;
+						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
+						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
 						
 						players[p['idPlayer']].x_display += (players[p['idPlayer']].x_display - oldX);
 						players[p['idPlayer']].y_display += (players[p['idPlayer']].y_display - oldY);
