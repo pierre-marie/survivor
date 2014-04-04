@@ -556,7 +556,7 @@
 			   		}, 1000);
 			   		p.name = response.name;
 			   		addPlayer(p);
-			   		socket.emit('SEND_PLAYER', JSON.stringify(players[playerId]));
+			   		socket.emit('SEND_PLAYER', JSON.stringify(me[playerId]));
 				});
 			   });
 			 }
