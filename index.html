@@ -180,7 +180,7 @@
 			//Send a shoot
 			function iJustShoot() {
 				socket.emit('SHOOT', playerId);
-				var s = new Shoot(players[playerId]['x'], players[playerId]['y'], players[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
+				var s = new Shoot(me[playerId]['x'], me[playerId]['y'], me[playerId]['r'], playerId, Math.floor(Math.random() * 10000000000000001));
 				addShoot(s);
 			}
 
@@ -205,11 +205,6 @@
 					//Update player
 					players[p['idPlayer']].x = p['x'];
 					players[p['idPlayer']].y = p['y'];
-
-					//synchro
-					//players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
-					//players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
-
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
 					players[p['idPlayer']].right = p['right'];
@@ -567,6 +562,7 @@
 			   			for(var i = 0; i < playersContainer.children.length; i++) {
 							players[playersContainer.children[i].name]['timeAlive'] += 1;
 						}
+						me[playerId]['timeAlive'] += 1;
 			   		}, 1000);
 			   		p.name = response.name;
 			   		addPlayer(p);
