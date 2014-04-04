@@ -202,8 +202,8 @@
 						var ratioX = $(window).width() / players[playerId]['x_center'];
 						var ratioY = $(window).height() / players[playerId]['y_center'];
 
-						players[p['idPlayer']].x_display = p['x'] * ratioX;
-						players[p['idPlayer']].y_display = p['y'] * ratioY;
+						players[p['idPlayer']].x_display = (p['x'] * ratioX) / 2;
+						players[p['idPlayer']].y_display = (p['y'] * ratioY) / 2;
 					}
 
 					players[p['idPlayer']].r = p['r'];
