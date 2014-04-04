@@ -9,8 +9,8 @@
 		<script src="./shoot.js"></script>
 	</head>
 	<body style="width:100%; height:100%; margin:0;">
-	<!-- <div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;"> -->
-	<div id="container" style="width:600px; height:400px; position:absolute; background-color:pink; margin:0;">
+	<button onclick="debugPlayers()">Players</button>
+	<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
 				<div style="position:absolute;">
 				<div id="fb-root"></div>
 				<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
@@ -21,7 +21,6 @@
 				<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 				</form> -->
-				<button onclick="debugPlayers()">Players</button>
 		</div>
 
 		<script>
@@ -208,8 +207,7 @@
 
 			socket.on('message', function(message) {
 
-			   //var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
-			   var renderer = new PIXI.WebGLRenderer(600, 400);
+				var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
 			   document.getElementById('container').appendChild(renderer.view);
 			   var stage = new PIXI.Stage;
 			   requestAnimationFrame(animate);
@@ -548,8 +546,7 @@
 
 			 function loadMyPlayer() {
 
-			   //var p = new Player($(window).width()/2, $(window).height()/2, -Math.PI/2, '', '', playerId);
-			   var p = new Player(300, 200, -Math.PI/2, '', '', playerId);
+			   var p = new Player($(window).width()/2, $(window).height()/2, -Math.PI/2, '', '', playerId);
 			   FB.api("/me/picture?width=75&height=75",  function(response) {
 			   	p.picture = response.data.url;
 			   	FB.api('/me', function(response) {
