@@ -196,8 +196,14 @@
 
 					if (typeof players[playerId] != 'undefined') {
 						//synchro
-						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
-						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
+						//players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
+						//players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
+
+						var ratioX = $(window).width() / players[playerId]['x_center'];
+						var ratioY = $(window).height() / players[playerId]['y_center'];
+
+						players[p['idPlayer']].x_display = p['x'] * ratioX;
+						players[p['idPlayer']].y_display = p['y'] * ratioY;
 					}
 
 					players[p['idPlayer']].r = p['r'];
