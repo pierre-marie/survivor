@@ -270,7 +270,6 @@
 						}
 				}
 				//Move others depending on me
-				if (typeof players[playerId] != 'undefined') {
 					for (var p in players) {
 						if (p != playerId) {
 							if (players[playerId]['up']) {
@@ -303,7 +302,6 @@
 							}
 						}
 					}
-				}
 
 				//Replace graphic elements
 				for(var i = 0; i < playersContainer.children.length; i++) {
@@ -439,10 +437,12 @@
 
 			   function animate() {
 
-				updateLocalPlayers();
-				updateLocalShoots();
-				checkCollision();
-				updateFriendsIndicator();
+				if (typeof players[playerId] != 'undefined') {
+					updateLocalPlayers();
+					updateLocalShoots();
+					checkCollision();
+					updateFriendsIndicator();
+				}
 
 			       renderer.render(stage);
 			       requestAnimationFrame(animate);
