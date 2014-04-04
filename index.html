@@ -386,15 +386,15 @@
 
 			if (typeof players[playerId] != 'undefined') {
 				//my player
-				var xa = players[playerId]['x'];
-				var ya = players[playerId]['y'];
+				var xa = players[playerId]['x_center'];
+				var ya = players[playerId]['y_center'];
 
 				for(var i = 0; i < playersContainer.children.length; i++) {
 					if (playersContainer.children[i].name != playerId) {
 
 						//friend
-						var xb = players[playersContainer.children[i].name]['x'];
-						var yb = players[playersContainer.children[i].name]['y'];
+						var xb = players[playersContainer.children[i].name]['x_display'];
+						var yb = players[playersContainer.children[i].name]['y_display'];
 				
 						var a = (yb - ya) / (xb - xa);
 						var b = ya - (a * xa);
