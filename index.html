@@ -131,10 +131,10 @@
 				newSpaceship.name = p.idPlayer;
 				spaceshipsContainer.addChild(newSpaceship);
 
-				var newFriendIndicatorTexture = PIXI.Texture.fromImage('shoot.png');
+				var newFriendIndicatorTexture = PIXI.Texture.fromImage('triangle.png');
 				var newFriendIndicator = new PIXI.Sprite(newFriendIndicatorTexture);
-				newFriendIndicator.anchor.x = 0;
-				newFriendIndicator.anchor.y = 0;
+				newFriendIndicator.anchor.x = 0.5;
+				newFriendIndicator.anchor.y = 0.5;
 				newFriendIndicator.position.x = p.x;
 				newFriendIndicator.position.y = p.y;
 				newFriendIndicator.name = p.idPlayer;
@@ -406,6 +406,7 @@
 						if ((xb < xa) && (yb >= 0) && (yb <= $(window).height())) {
 							friendsIndicatorsContainer.children[i].position.x = 0;
 							friendsIndicatorsContainer.children[i].position.y = b;
+							friendsIndicatorsContainer.children[i].rotation = -(Math.PI/2);
 						}
 					}
 				}
