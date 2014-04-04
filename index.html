@@ -299,20 +299,28 @@
 				 	me[playerId]['r'] -= 0.01 * speed;
 				}
 				if (me[playerId]['up']) {
+					me[playerId]['x'] += speed * Math.cos(me[playerId]['r']);
+			       	me[playerId]['y'] += speed * Math.sin(me[playerId]['r']);
 					allExceptMe.position.x -= speed * Math.cos(me[playerId]['r']);
 			      	allExceptMe.position.y -= speed * Math.sin(me[playerId]['r']);
 				}
 				if (me[playerId]['down']) {
-					allExceptMe.position.x += backgroundSpeed * Math.cos(me[playerId]['r']);
-					allExceptMe.position.y += backgroundSpeed * Math.sin(me[playerId]['r']);
+					me[playerId]['x'] -= speed * Math.cos(me[playerId]['r']);
+			        me[playerId]['y'] -= speed * Math.sin(me[playerId]['r']);
+					allExceptMe.position.x += speed * Math.cos(me[playerId]['r']);
+					allExceptMe.position.y += speed * Math.sin(me[playerId]['r']);
 				}
 				if (me[playerId]['b']) {
-					allExceptMe.position.x += backgroundSpeed * Math.cos(me[playerId]['r'] + (Math.PI/2));
-			       	allExceptMe.position.y += backgroundSpeed * Math.sin(me[playerId]['r'] + (Math.PI/2));
+					me[playerId]['x'] += speed * Math.cos(me[playerId]['r'] - (Math.PI/2));
+			        me[playerId]['y'] += speed * Math.sin(me[playerId]['r'] - (Math.PI/2));
+					allExceptMe.position.x += speed * Math.cos(me[playerId]['r'] + (Math.PI/2));
+			       	allExceptMe.position.y += speed * Math.sin(me[playerId]['r'] + (Math.PI/2));
 				}
 				if (me[playerId]['n']) {
-			      	allExceptMe.position.x += backgroundSpeed * Math.cos(me[playerId]['r'] - (Math.PI/2));
-			      	allExceptMe.position.y += backgroundSpeed * Math.sin(me[playerId]['r'] - (Math.PI/2));
+					me[playerId]['x'] += speed * Math.cos(me[playerId]['r'] + (Math.PI/2));
+			        me[playerId]['y'] += speed * Math.sin(me[playerId]['r'] + (Math.PI/2));
+			      	allExceptMe.position.x += speed * Math.cos(me[playerId]['r'] - (Math.PI/2));
+			      	allExceptMe.position.y += speed * Math.sin(me[playerId]['r'] - (Math.PI/2));
 				}
 
 				//Replace graphic elements
