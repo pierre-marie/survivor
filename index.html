@@ -9,7 +9,6 @@
 		<script src="./shoot.js"></script>
 	</head>
 	<body style="width:100%; height:100%; margin:0;">
-	<button onclick="debugPlayers()">Players</button>
 	<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
 				<div style="position:absolute;">
 				<div id="fb-root"></div>
@@ -81,7 +80,9 @@
 			var shoots = {};
 
 			//PIXI container
-			var shootsContainer= new PIXI.DisplayObjectContainer();
+			var allExceptMe = new PIXI.DisplayObjectContainer();
+			var me = new PIXI.DisplayObjectContainer();
+			var shootsContainer = new PIXI.DisplayObjectContainer();
 			var playersContainer = new PIXI.DisplayObjectContainer();
 			var spaceshipsContainer = new PIXI.DisplayObjectContainer();
 			var playersNamesContainer = new PIXI.DisplayObjectContainer();
@@ -197,14 +198,8 @@
 					if (typeof players[playerId] != 'undefined') {
 
 						//synchro
-						var oldX = players[p['idPlayer']].x_display;
-						var oldY = players[p['idPlayer']].y_display;
-
 						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
 						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
-						
-						players[p['idPlayer']].x_display += (players[p['idPlayer']].x_display - oldX);
-						players[p['idPlayer']].y_display += (players[p['idPlayer']].y_display - oldY);
 					}
 
 					players[p['idPlayer']].r = p['r'];
@@ -234,16 +229,20 @@
 				newZero.position.x = 0;
 				newZero.position.y = 0;
 				backgroundContainer.addChild(newZero);
+				stage.addChild(backgroundContainer);
 			//
 
-			stage.addChild(backgroundContainer);
-			stage.addChild(playersContainer);
-			stage.addChild(spaceshipsContainer);
-			stage.addChild(playersNamesContainer);
-			stage.addChild(playersTimeContainer);
-			stage.addChild(playersXContainer);
-			stage.addChild(playersYContainer);
-			stage.addChild(shootsContainer);
+			allExceptMe.addChild(backgroundContainer);
+			allExceptMe.addChild(playersContainer);
+			allExceptMe.addChild(spaceshipsContainer);
+			allExceptMe.addChild(playersNamesContainer);
+			allExceptMe.addChild(playersTimeContainer);
+			allExceptMe.addChild(playersXContainer);
+			allExceptMe.addChild(playersYContainer);
+			allExceptMe.addChild(shootsContainer);
+
+			stage.addChild(me);
+			stage.addChild(allExceptMe);
 			stage.addChild(friendsIndicatorsContainer);
 
 			function updateLocalPlayers() {
@@ -291,33 +290,40 @@
 			        	players[p]['y_display'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
 					}
 				}
+				
+				
+				if (players[playerId]['up']) {
+								allExceptMe.position.x -= speed * Math.cos(players[playerId]['r']);
+					        	allExceptMe.position.y -= speed * Math.sin(players[playerId]['r']);
+							}
+				
 				//Move others depending on me
 					for (var p in players) {
 						if (p != playerId) {
 							if (players[playerId]['up']) {
-								players[p]['x_display'] -= speed * Math.cos(players[playerId]['r']);
-					        	players[p]['y_display'] -= speed * Math.sin(players[playerId]['r']);
+								//players[p]['x_display'] -= speed * Math.cos(players[playerId]['r']);
+					        	//players[p]['y_display'] -= speed * Math.sin(players[playerId]['r']);
 					        	
 					        	backgroundContainer.children[0].position.x -= backgroundSpeed * Math.cos(players[playerId]['r']);
 					        	backgroundContainer.children[0].position.y -= backgroundSpeed * Math.sin(players[playerId]['r']);
 							}
 							if (players[playerId]['down']) {
-							 	players[p]['x_display'] += speed * Math.cos(players[playerId]['r']);
-					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r']);
+							 	//players[p]['x_display'] += speed * Math.cos(players[playerId]['r']);
+					        	//players[p]['y_display'] += speed * Math.sin(players[playerId]['r']);
 					        	
 					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r']);
 					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r']);
 							}
 							if (players[playerId]['b']) {
-								players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
-					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
+								//players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
+					        	//players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
 					        	
 					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r'] + (Math.PI/2));
 					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r'] + (Math.PI/2));
 							}
 							if (players[playerId]['n']) {
-								players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
-					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
+								//players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
+					        	//players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
 
 					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r'] - (Math.PI/2));
 					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r'] - (Math.PI/2));
