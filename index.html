@@ -233,8 +233,8 @@
 				for(var p in players) {
 					
 					//synch
-					players[p].x_display = players[p]['x'] * myRatioX;
-					players[p].y_display = players[p]['y'] * myRatioY;
+					//players[p].x_display = players[p]['x'] * myRatioX;
+					//players[p].y_display = players[p]['y'] * myRatioY;
 					
 					
 					if (players[p]['right']) {
@@ -391,7 +391,6 @@
 
 			function updateFriendsIndicator() {
 
-			if (typeof players[playerId] != 'undefined') {
 				//my player
 				var xa = players[playerId]['x_center'];
 				var ya = players[playerId]['y_center'];
@@ -432,7 +431,6 @@
 						}
 					}
 				}
-			}	
 			}
 
 			   function animate() {
