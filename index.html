@@ -196,8 +196,11 @@
 
 					if (typeof players[playerId] != 'undefined') {
 						//synchro
-						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
-						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
+						var diffX = players[playerId]['x'] - players[playerId]['x_display'];
+						var diffY = players[playerId]['y'] - players[playerId]['y_display'];
+
+						players[p['idPlayer']].x_display = ((p['x'] * players[playerId]['x_display']) / players[playerId]['x']) - diffX;
+						players[p['idPlayer']].y_display = ((p['y'] * players[playerId]['y_display']) / players[playerId]['y']) - diffY;
 					}
 
 					players[p['idPlayer']].r = p['r'];
