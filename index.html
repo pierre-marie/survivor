@@ -196,14 +196,8 @@
 
 					if (typeof players[playerId] != 'undefined') {
 						//synchro
-						//players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
-						//players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
-
-						var ratioX = $(window).width() / players[playerId]['x_center'];
-						var ratioY = $(window).height() / players[playerId]['y_center'];
-
-						players[p['idPlayer']].x_display = (p['x'] * ratioX) / 2;
-						players[p['idPlayer']].y_display = (p['y'] * ratioY) / 2;
+						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
+						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
 					}
 
 					players[p['idPlayer']].r = p['r'];
@@ -294,29 +288,29 @@
 					for (var p in players) {
 						if (p != playerId) {
 							if (players[playerId]['up']) {
-								players[p]['x_display'] -= speed * Math.cos(players[playerId]['r']);
-					        	players[p]['y_display'] -= speed * Math.sin(players[playerId]['r']);
+								//players[p]['x_display'] -= speed * Math.cos(players[playerId]['r']);
+					        	//players[p]['y_display'] -= speed * Math.sin(players[playerId]['r']);
 					        	
 					        	backgroundContainer.children[0].position.x -= backgroundSpeed * Math.cos(players[playerId]['r']);
 					        	backgroundContainer.children[0].position.y -= backgroundSpeed * Math.sin(players[playerId]['r']);
 							}
 							if (players[playerId]['down']) {
-							 	players[p]['x_display'] += speed * Math.cos(players[playerId]['r']);
-					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r']);
+							 	//players[p]['x_display'] += speed * Math.cos(players[playerId]['r']);
+					        	//players[p]['y_display'] += speed * Math.sin(players[playerId]['r']);
 					        	
 					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r']);
 					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r']);
 							}
 							if (players[playerId]['b']) {
-								players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
-					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
+								//players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] + (Math.PI/2));
+					        	//players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] + (Math.PI/2));
 					        	
 					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r'] + (Math.PI/2));
 					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r'] + (Math.PI/2));
 							}
 							if (players[playerId]['n']) {
-								players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
-					        	players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
+								//players[p]['x_display'] += speed * Math.cos(players[playerId]['r'] - (Math.PI/2));
+					        	//players[p]['y_display'] += speed * Math.sin(players[playerId]['r'] - (Math.PI/2));
 					        	
 					        	backgroundContainer.children[0].position.x += backgroundSpeed * Math.cos(players[playerId]['r'] - (Math.PI/2));
 					        	backgroundContainer.children[0].position.y += backgroundSpeed * Math.sin(players[playerId]['r'] - (Math.PI/2));
