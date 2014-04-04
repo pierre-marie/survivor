@@ -187,8 +187,8 @@
 					//synchro
 					var ratioX = players[playerId]['x'] / p['x'];
 					var ratioY = players[playerId]['y'] / p['y'];
-					players[playerId]['x_display'] = ratioX * players[playerId]['x'];
-					players[playerId]['y_display'] = ratioY * players[playerId]['y'];
+					players[p['idPlayer']].x_display = ratioX * players[playerId]['x'];
+					players[p['idPlayer']].y_display = ratioY * players[playerId]['y'];
 					
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
