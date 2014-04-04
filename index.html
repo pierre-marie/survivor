@@ -183,13 +183,6 @@
 					//Update player
 					players[p['idPlayer']].x = p['x'];
 					players[p['idPlayer']].y = p['y'];
-					
-					//synchro
-					//var myRatioX = p['x'] / players[playerId]['x'];
-					//var myRatioY = p['y'] / players[playerId]['y'];
-					//players[p['idPlayer']].x_display = players[playerId].x_display * myRatioX;
-					//players[p['idPlayer']].y_display = players[playerId].y_display * myRatioY;
-
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
 					players[p['idPlayer']].right = p['right'];
@@ -233,8 +226,17 @@
 
 				var speed = 4;
 				var backgroundSpeed = 0.2;
-				//update real coord
+
+				var myRatioX = players[playerId]['x'] / players[playerId]['x_center'];
+				var myRatioY = players[playerId]['y'] / players[playerId]['y_center'];
+
 				for(var p in players) {
+					
+					//synch
+					players[p].x_display = players[p]['x'] * myRatioX;
+					players[p].y_display = players[p]['y'] * myRatioY;
+					
+					
 					if (players[p]['right']) {
 				 		players[p]['r'] += 0.01 * speed;
 				 	}
