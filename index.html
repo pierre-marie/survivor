@@ -184,11 +184,13 @@
 					players[p['idPlayer']].x = p['x'];
 					players[p['idPlayer']].y = p['y'];
 					
+					if (p['x'] != p['x_center']) {
 					//synch
 					var myDiffX = players[playerId]['x'] - players[playerId]['x_center'];
 					var myDiffY = players[playerId]['y'] - players[playerId]['y_center'];
 					players[p].x_display = players[p]['x'] + myRatioX;
 					players[p].y_display = players[p]['y'] + myRatioY;
+					}
 					
 					players[p['idPlayer']].r = p['r'];
 					players[p['idPlayer']].left = p['left'];
