@@ -195,11 +195,9 @@
 					players[p['idPlayer']].y = p['y'];
 
 					if (typeof players[playerId] != 'undefined') {
-						//synch
-						//var myDiffX = players[playerId]['x'] - players[playerId]['x_center'];
-						//var myDiffY = players[playerId]['y'] - players[playerId]['y_center'];
-						//players[p['idPlayer']].x_display = p['x'] + myDiffX;
-						//players[p['idPlayer']].y_display = p['y'] + myDiffY;
+						//synchro
+						players[p['idPlayer']].x_display = (p['x'] * players[playerId]['x_display']) / players[playerId]['x'];
+						players[p['idPlayer']].y_display = (p['y'] * players[playerId]['y_display']) / players[playerId]['y'];
 					}
 
 					players[p['idPlayer']].r = p['r'];
@@ -220,7 +218,7 @@
 			   document.getElementById('container').appendChild(renderer.view);
 			   var stage = new PIXI.Stage;
 			   requestAnimationFrame(animate);
-			
+
 			//test
 				var zero = PIXI.Texture.fromImage('test.jpg');
 				var newZero = new PIXI.Sprite(zero);

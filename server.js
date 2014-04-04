@@ -32,7 +32,6 @@ io.sockets.on('connection', function (socket) {
 	//Receive an updated player to broadcast
 	socket.on('SEND_PLAYER', function(p) {
 		socket.broadcast.emit('UPDATE_PLAYER', p);
-		//socket.emit('UPDATE_PLAYER', p);
 	});
 
   	socket.on('disconnect', function () { 
