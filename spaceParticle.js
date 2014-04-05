@@ -39,7 +39,7 @@ var SpaceParticle = function() {
 		//context.fill();
 
 		var graphics = new PIXI.Graphics();
-		graphics.beginFill('rgba(226,219,226,'+wp.opacity+')');
+		graphics.beginFill(0x00FF00);
 
 		graphics.drawCircle(wp.x, wp.y, this.z * this.size);
 
