@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	"http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<title>Survivor - webSocket</title>
@@ -9,31 +8,31 @@
 		<script src="./shoot.js"></script>
 	</head>
 	<body style="width:100%; height:100%; margin:0;">
-	<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
-				<div style="position:absolute;">
-				<div id="fb-root"></div>
-				<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+		<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
+			<div style="position:absolute;">
+				<div id="fb-root">
 				</div>
-				<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
-				<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-				</form> -->
+				<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+			</div>
+			<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="hosted_button_id" value="63YBLHRMSBZGA">
+			<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+			</form> -->
 		</div>
 
+		//Facebook connect
 		<script>
-			//Facebook connect
 			window.fbAsyncInit = function() {
 			FB.init({
 			  appId      : '427095730769334',
-			  status     : true, // check login status
-			  cookie     : true, // enable cookies to allow the server to access the session
-			  xfbml      : true  // parse XFBML
+			  status     : true,
+			  cookie     : true,
+			  xfbml      : true
 			});
 			
-			FB.Event.subscribe('auth.authResponseChange', function(response) {
-			  // Here we specify what we do with the response anytime this event occurs. 
+			FB.Event.subscribe('auth.authResponseChange', function(response) { 
 			  if (response.status === 'connected') {
 			    loadMyPlayer();
 			  } else if (response.status === 'not_authorized') {
@@ -53,14 +52,11 @@
 			 ref.parentNode.insertBefore(js, ref);
 			}(document));
 		</script>
-
 		<script src="./KeyboardJS-master/keyboard.js"></script>
 		<script src="http://91.121.137.144:8081/socket.io/socket.io.js"></script>
-		
-		
+
 		<script>
 
-			//myPlayer socket id
 			var playerId = Math.floor(Math.random() * 10000000000000001);
 
 			//OBJECTS container
@@ -96,12 +92,9 @@
 				socket.emit('MY_ID', playerId);
 			});
 
-			//Locally save a shoot and load the sprite
-			function addShoot(s) {
-				
+			function addShoot(s) {				
 				shoots[s.uniqId] = {};
 				shoots[s.uniqId] = s;
-
 				var newShootTexture = PIXI.Texture.fromImage('shoot.png');
 				var newShoot = new PIXI.Sprite(newShootTexture);
 				newShoot.anchor.x = 0.5;
@@ -112,9 +105,7 @@
 				shootsContainer.addChild(newShoot);
 			}
 
-			//Locally save a player and load the sprite
 			function addPlayer(p) {
-
 				if (p.idPlayer != playerId) {
 					players[p.idPlayer] = {};
 					players[p.idPlayer] = p;
@@ -122,7 +113,6 @@
 					me[p.idPlayer] = {};
 					me[p.idPlayer] = p;
 				}
-
 				var newPlayerTexture = PIXI.Texture.fromImage(p.picture);
 				var newPlayer = new PIXI.Sprite(newPlayerTexture);
 				newPlayer.anchor.x = 0.5;
@@ -219,10 +209,10 @@
 
 			socket.on('message', function(message) {
 
-				var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
-			   document.getElementById('container').appendChild(renderer.view);
-			   var stage = new PIXI.Stage;
-			   requestAnimationFrame(animate);
+			var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height());
+			document.getElementById('container').appendChild(renderer.view);
+			var stage = new PIXI.Stage;
+			requestAnimationFrame(animate);
 
 			//test
 				var zero = PIXI.Texture.fromImage('test.jpg');
@@ -398,8 +388,6 @@
 			       	shootsContainer.children[i].position.y += (Math.sin(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
 			       	shoots[shootsContainer.children[i].name]['x'] += (Math.cos(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
 			       	shoots[shootsContainer.children[i].name]['y'] += (Math.sin(shoots[shootsContainer.children[i].name]['r']) * shootSpeed);
-			       	shoots[shootsContainer.children[i].name]['x_display'] = shootsContainer.children[i].position.x;
-			       	shoots[shootsContainer.children[i].name]['y_display'] = shootsContainer.children[i].position.y;
 				}
 			}
 
