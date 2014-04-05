@@ -68,9 +68,9 @@
 
 //TEST SOUND
 //////////////////////////////////////////////////////////////////////////////////////////////////
-var sm = new SoundManager();
-sm.load();
-sm.s_background.play();
+var soundManager = new SoundManager();
+soundManager.load();
+soundManager.s_background.play();
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 			//OBJECTS container
@@ -118,7 +118,7 @@ sm.s_background.play();
 			}
 
 			function addShoot(s) {
-				sm.s_shoot.play();
+				soundManager.s_shoot.play();
 				shoots[s.uniqId] = {};
 				shoots[s.uniqId] = s;
 				var newShootTexture = PIXI.Texture.fromImage('shoot.png');
