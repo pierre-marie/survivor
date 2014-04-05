@@ -433,13 +433,13 @@
 						var b = ya - (a * xa);
 						
 						//y = 0
-						if (yb < ya) {
+						if (xb < xa) {
 							friendsIndicatorsContainer.children[i].position.x = b;
 							friendsIndicatorsContainer.children[i].position.y = 0;
 							friendsIndicatorsContainer.children[i].rotation = 0;
 						}
 						//x = 0
-						if (xb < xa) {
+						if (yb < ya) {
 							friendsIndicatorsContainer.children[i].position.x = 0;
 							friendsIndicatorsContainer.children[i].position.y = b;
 							friendsIndicatorsContainer.children[i].rotation = -(Math.PI/2);
