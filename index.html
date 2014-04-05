@@ -6,6 +6,7 @@
 		<script src="./pixi.js"></script>
 		<script src="./player.js"></script>
 		<script src="./shoot.js"></script>
+		<script src="./spaceParticule.js"></script>
 	</head>
 	<body style="width:100%; height:100%; margin:0;">
 		<div id="container" style="width:100%; height:100%; position:absolute; background-color:pink; margin:0;">
@@ -60,6 +61,7 @@
 			var playerId = Math.floor(Math.random() * 10000000000000001);
 
 			//OBJECTS container
+			var spaceParticles;
 			var me = {};
 			var players = {};
 			var shoots = {};
@@ -91,6 +93,13 @@
 			socket.on('connect', function () {
 				socket.emit('MY_ID', playerId);
 			});
+
+			function initBackgroundLayers(stage) {
+				spaceParticles = [];
+				for(var i = 0; i < 150; i++) {
+					spaceParticles.push(new spaceParticle());
+				}
+			}
 
 			function addShoot(s) {				
 				shoots[s.uniqId] = {};
@@ -214,6 +223,8 @@
 			var stage = new PIXI.Stage;
 			requestAnimationFrame(animate);
 
+
+			initBackgroundLayers(stage);
 			//test
 				var zero = PIXI.Texture.fromImage('test.jpg');
 				var newZero = new PIXI.Sprite(zero);
@@ -433,6 +444,11 @@
 						}
 					}
 				}
+			}
+
+			// Draw spaceParticles
+			for(i in spaceParticles) {
+				spaceParticles[i].draw(renderer);
 			}
 
 			   function animate() {
