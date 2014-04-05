@@ -34,9 +34,9 @@ io.sockets.on('connection', function (socket) {
 		socket.broadcast.emit('UPDATE_PLAYER', p);
 	});
 
-  	socket.on('disconnect', function () { 
+  	socket.on('disconnect', function () {
 		if (typeof correspondance[socket.id] != 'undefined') {
-  			console.log(socket.id + ' disconnect');
+			console.log('disconnect');
   			socket.broadcast.emit('DECO', correspondance[socket.id]['playerId']);
   			delete correspondance[socket.id];
   		}
