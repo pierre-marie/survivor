@@ -163,7 +163,7 @@
 				if (p.idPlayer != playerId) {
 					playersContainer.addChild(newPlayer);
 					spaceshipsContainer.addChild(newSpaceship);
-					//friendsIndicatorsContainer.addChild(newFriendIndicator);
+					friendsIndicatorsContainer.addChild(newFriendIndicator);
 					playersNamesContainer.addChild(pName);
 					playersTimeContainer.addChild(pTime);
 					playersXContainer.addChild(pX);
@@ -171,7 +171,6 @@
 				} else {
 					myPlayersContainer.addChild(newPlayer);
 					mySpaceshipsContainer.addChild(newSpaceship);
-					//myFriendsIndicatorsContainer.addChild(newFriendIndicator);
 					myPlayersNamesContainer.addChild(pName);
 					myPlayersTimeContainer.addChild(pTime);
 					myPlayersXContainer.addChild(pX);
@@ -246,9 +245,8 @@
 			me.addChild(myPlayersXContainer);
 			me.addChild(myPlayersYContainer);
 			me.addChild(myShootsContainer);
+			me.addChild(friendsIndicatorsContainer);
 			stage.addChild(me);
-
-			//stage.addChild(friendsIndicatorsContainer);
 
 			function updateLocalPlayers() {				
 
@@ -280,7 +278,6 @@
 			        	players[p]['y'] += speed * Math.sin(players[p]['r'] + (Math.PI/2));
 					}
 				}
-
 
 				if (me[playerId]['right']) {
 					me[playerId]['r'] += 0.01 * speed;
@@ -415,15 +412,14 @@
 			function updateFriendsIndicator() {
 
 				//my player
-				var xa = players[playerId]['x_center'];
-				var ya = players[playerId]['y_center'];
+				var xa = me[playerId]['x'];
+				var ya = me[playerId]['x'];
 
 				for(var i = 0; i < playersContainer.children.length; i++) {
-					if (playersContainer.children[i].name != playerId) {
 
 						//friend
-						var xb = players[playersContainer.children[i].name]['x_display'];
-						var yb = players[playersContainer.children[i].name]['y_display'];
+						var xb = players[playersContainer.children[i].name]['x'];
+						var yb = players[playersContainer.children[i].name]['y'];
 				
 						var a = (yb - ya) / (xb - xa);
 						var b = ya - (a * xa);
@@ -452,7 +448,6 @@
 							friendsIndicatorsContainer.children[i].position.y = $(window).height();
 							friendsIndicatorsContainer.children[i].rotation = -Math.PI;
 						}
-					}
 				}
 			}
 
@@ -471,7 +466,7 @@
 					updateLocalShoots();
 					updateSpaceParticles();
 					//checkCollision();
-					//updateFriendsIndicator();
+					updateFriendsIndicator();
 				}
 
 			       renderer.render(stage);
