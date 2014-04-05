@@ -20,7 +20,7 @@ var SpaceParticle = function() {
 		wp.y = wp.y > bounds[1].y ? bounds[0].y : wp.y;
 	};
 
-	wp.addToScene = function(pixiLayer) {
+	wp.addToLayer = function(pixiLayer) {
 
 		// Draw circle
 		//context.fillStyle = 'rgba(226,219,226,'+wp.opacity+')';
