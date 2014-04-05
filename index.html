@@ -448,7 +448,7 @@
 
 			// Draw spaceParticles
 			for(i in spaceParticles) {
-				spaceParticles[i].draw(renderer.context);
+				spaceParticles[i].draw(renderer.view.getContext('2d'));
 			}
 
 			   function animate() {
