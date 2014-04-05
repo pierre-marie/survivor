@@ -412,15 +412,18 @@
 			function updateFriendsIndicator() {
 
 				//my player
-				var xa = me[playerId]['x'];
-				var ya = me[playerId]['x'];
+				var xa = me[playerId]['x_center'];
+				var ya = me[playerId]['x_center'];
 
 				for(var i = 0; i < playersContainer.children.length; i++) {
 
-						//friend
-						var xb = players[playersContainer.children[i].name]['x'];
-						var yb = players[playersContainer.children[i].name]['y'];
-				
+						//friend in screen
+						var xb = players[playersContainer.children[i].name]['x'] - allExceptMe.position.x;
+						var yb = players[playersContainer.children[i].name]['y'] - allExceptMe.position.y;
+
+						console.log(xb);
+						console.log(yb);
+
 						var a = (yb - ya) / (xb - xa);
 						var b = ya - (a * xa);
 						
