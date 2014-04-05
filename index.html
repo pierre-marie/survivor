@@ -21,6 +21,11 @@
 			<input type="image" src="http://cabane-robinson.fr/d.jpg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 			</form> -->
+			
+			<div style="background-color:white; position:absolute; margin-top:200px; width:300px;">
+				px: <p id="px"></p>
+				py: <p id="px"></p>
+			<div>
 		</div>
 
 		//Facebook connect
@@ -421,8 +426,8 @@
 						var xb = players[playersContainer.children[i].name]['x'] - allExceptMe.position.x;
 						var yb = players[playersContainer.children[i].name]['y'] - allExceptMe.position.y;
 
-						console.log(xb);
-						console.log(yb);
+						document.getElementById("px").innerHTML=xb;
+						document.getElementById("py").innerHTML=yb;
 
 						var a = (yb - ya) / (xb - xa);
 						var b = ya - (a * xa);
