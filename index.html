@@ -418,8 +418,8 @@
 				for(var i = 0; i < playersContainer.children.length; i++) {
 
 						//friend in screen
-						var xb = players[playersContainer.children[i].name]['x'] - allExceptMe.position.x;
-						var yb = players[playersContainer.children[i].name]['y'] - allExceptMe.position.y;
+						var xb = players[playersContainer.children[i].name]['x'] + allExceptMe.position.x;
+						var yb = players[playersContainer.children[i].name]['y'] + allExceptMe.position.y;
 
 						console.log(xb);
 						console.log(yb);
