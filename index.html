@@ -65,10 +65,22 @@
 
 			var playerId = Math.floor(Math.random() * 10000000000000001);
 
-			//TEST
-			var audio = new Audio('./sounds/background.mp3');
-			audio.play();
-			var shoot_sound = new Audio('./sounds/shoot.mp3');
+//TEST SOUND
+//////////////////////////////////////////////////////////////////////////////////////////////////
+var snd1  = new Audio();
+var src1  = document.createElement("source");
+src1.type = "audio/mpeg";
+src1.src  = "./sounds/background.mp3";
+snd1.appendChild(src1);
+
+var snd2  = new Audio();
+var src2  = document.createElement("source");
+src2.type = "audio/mpeg";
+src2.src  = "./sounds/shoot.mp3";
+snd2.appendChild(src2);
+
+snd1.play();
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 			//OBJECTS container
 			var spaceParticles;
@@ -115,7 +127,7 @@
 			}
 
 			function addShoot(s) {
-				shoot_sound.play();
+				snd2.play();
 				shoots[s.uniqId] = {};
 				shoots[s.uniqId] = s;
 				var newShootTexture = PIXI.Texture.fromImage('shoot.png');
