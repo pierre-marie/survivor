@@ -4,7 +4,7 @@ var SpaceParticle = function() {
 	wp.x = 0;
 	wp.y = 0;
 	wp.z = Math.random() * 1 + 0.3;
-	wp.size = 2.3;
+	wp.size = 1.5;
 	wp.opacity = Math.random() * 0.8 + 0.1;
 
 	wp.update = function(w, h) {
@@ -30,19 +30,10 @@ var SpaceParticle = function() {
 
 	wp.addToLayer = function(pixiLayer) {
 
-		// Draw circle
-		//context.fillStyle = 'rgba(226,219,226,'+wp.opacity+')';
-		//context.fillStyle = '#fff';
-		//context.beginPath();
-		//context.arc(wp.x, wp.y, this.z * this.size, 0, Math.PI*2, true);
-		//context.closePath();
-		//context.fill();
-
 		var graphics = new PIXI.Graphics();
+		graphics.fillAlpha = wp.opacity;
 		graphics.beginFill(0x00FF00);
-
 		graphics.drawCircle(wp.x, wp.y, this.z * this.size);
-
 		graphics.endFill();
 		pixiLayer.addChild(graphics);
 	};
