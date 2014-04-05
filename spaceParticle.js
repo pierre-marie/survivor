@@ -30,9 +30,9 @@ var SpaceParticle = function() {
 
 	wp.addToLayer = function(pixiLayer) {
 
-		var graphics = new PIXI.Graphics();
-		graphics.fillAlpha = wp.opacity;
+		var graphics = new PIXI.Graphics();		
 		graphics.beginFill(0x00FF00);
+		graphics.fillAlpha = wp.opacity;
 		graphics.drawCircle(wp.x, wp.y, this.z * this.size);
 		graphics.endFill();
 		pixiLayer.addChild(graphics);
