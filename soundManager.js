@@ -4,7 +4,7 @@ var mySoundManager = function() {
 	var sm.s_background;
 	var sm.s_shoot = new Audio();
 
-	sm.load = function() {
+	sm.loadSounds = function() {
 		this.s_background = = new Audio();
 		var src1  = document.createElement("source");
 		src1.type = "audio/mpeg";
