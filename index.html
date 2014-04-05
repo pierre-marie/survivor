@@ -230,6 +230,13 @@
 			var stage = new PIXI.Stage;
 			requestAnimationFrame(animate);
 
+			//TEST
+			var marioTExt = PIXI.Texture.fromImage('test.gif');
+			var mario = new PIXI.Sprite(marioTExt);
+			mario.position.x = -3000;
+			mario.position.y = -3000;
+			allExceptMe.addChild(mario);
+			//TEST
 
 			initBackgroundLayers();
 			stage.addChild(backgroundContainer);
