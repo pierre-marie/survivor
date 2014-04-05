@@ -19,7 +19,7 @@ var SpaceParticle = function() {
 		wp.x = wp.x > bounds2.x ? bounds1.x : wp.x;
 		wp.y = wp.y > bounds2.y ? bounds1.y : wp.y;
 	};
-
+5
 	wp.addToLayer = function(pixiLayer) {
 
 		// Draw circle

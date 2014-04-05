@@ -248,6 +248,15 @@
 			me.addChild(myShootsContainer);
 			stage.addChild(me);
 
+/////TEST
+var graphics = new PIXI.Graphics();
+		graphics.beginFill(0x00FF00);
+
+		graphics.drawCircle(200, 200, 50);
+
+		graphics.endFill();
+		stage.addChild(graphics);
+/////TEST
 			//stage.addChild(friendsIndicatorsContainer);
 
 			function updateLocalPlayers() {				
