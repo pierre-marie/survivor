@@ -433,28 +433,29 @@
 						var b = ya - (a * xa);
 						
 						//y = 0
-						if (xb < xa) {
+						if ((b > 0) && (b <= $(window).width())) {
 							friendsIndicatorsContainer.children[i].position.x = b;
 							friendsIndicatorsContainer.children[i].position.y = 0;
 							friendsIndicatorsContainer.children[i].rotation = 0;
 						}
+						//y = $(window).height()
+						var testx = ($(window).height() / a) + b;
+						if ((testx > 0) && (textx <= $(window).width())) {
+							friendsIndicatorsContainer.children[i].position.x = testx;
+							friendsIndicatorsContainer.children[i].position.y = $(window).height();
+							friendsIndicatorsContainer.children[i].rotation = -Math.PI;
+						}
 						//x = 0
-						if (yb < ya) {
+						if ((b > 0) && (b <= $(window).height())) {
 							friendsIndicatorsContainer.children[i].position.x = 0;
 							friendsIndicatorsContainer.children[i].position.y = b;
 							friendsIndicatorsContainer.children[i].rotation = -(Math.PI/2);
 						}
 						//x = $(window).width()
-						if (xb > xa) {
+						if ((b > 0) && (b <= $(window).height())) {
 							friendsIndicatorsContainer.children[i].position.x = $(window).width();
 							friendsIndicatorsContainer.children[i].position.y = b;
 							friendsIndicatorsContainer.children[i].rotation = Math.PI/2;
-						}
-						//y = $(window).height()
-						if (yb > ya) {
-							friendsIndicatorsContainer.children[i].position.x = ($(window).height() / a) + b;
-							friendsIndicatorsContainer.children[i].position.y = $(window).height();
-							friendsIndicatorsContainer.children[i].rotation = -Math.PI;
 						}
 				}
 			}
