@@ -1,4 +1,4 @@
-var SoundManager = function() {
+var mySoundManager = function() {
 	var sm = this;
 
 	var sm.s_background;
