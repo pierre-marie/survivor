@@ -442,7 +442,7 @@
 
 			function updateSpaceParticles() {
 				for(i in spaceParticles) {
-					spaceParticles[i].update(backgroundContainer.getBounds());
+					spaceParticles[i].update($(window).width(), $(window).height());
 					backgroundContainer.children[i].position.x = spaceParticles[i].x;
 					backgroundContainer.children[i].position.y = spaceParticles[i].y;
 				}

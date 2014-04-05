@@ -7,10 +7,10 @@ var SpaceParticle = function() {
 	wp.size = 1.2;
 	wp.opacity = Math.random() * 0.8 + 0.1;
 
-	wp.update = function(bounds) {
+	wp.update = function(w, h) {
 		if(wp.x == 0 || wp.y == 0) {
-			wp.x = Math.floor(Math.random() * bounds.width);
-			wp.y = Math.floor(Math.random() * bounds.height);
+			wp.x = Math.floor(Math.random() * w);
+			wp.y = Math.floor(Math.random() * h);
 		}
 
 		// Wrap around screen
