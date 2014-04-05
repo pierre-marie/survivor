@@ -33,7 +33,7 @@ var SpaceParticle = function() {
 		var graphics = new PIXI.Graphics();
 		graphics.beginFill(0x00FF00);
 
-		graphics.drawCircle(wp.x, wp.y, Math.PI*2);
+		graphics.drawCircle(wp.x, wp.y, this.z * this.size);
 
 		graphics.endFill();
 		pixiLayer.addChild(graphics);
