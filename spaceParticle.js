@@ -7,17 +7,17 @@ var SpaceParticle = function() {
 	wp.size = 1.2;
 	wp.opacity = Math.random() * 0.8 + 0.1;
 
-	wp.update = function(bounds) {
+	wp.update = function(bounds1, bounds2) {
 		if(wp.x == 0 || wp.y == 0) {
-			wp.x = Math.random() * (bounds[1].x - bounds[0].x) + bounds[0].x;
-			wp.y = Math.random() * (bounds[1].y - bounds[0].y) + bounds[0].y;
+			wp.x = Math.random() * (bounds2.x - bounds1.x) + bounds1.x;
+			wp.y = Math.random() * (bounds2.y - bounds1.y) + bounds1.y;
 		}
 
 		// Wrap around screen
-		wp.x = wp.x < bounds[0].x ? bounds[1].x : wp.x;
-		wp.y = wp.y < bounds[0].y ? bounds[1].y : wp.y;
-		wp.x = wp.x > bounds[1].x ? bounds[0].x : wp.x;
-		wp.y = wp.y > bounds[1].y ? bounds[0].y : wp.y;
+		wp.x = wp.x < bounds1.x ? bounds2.x : wp.x;
+		wp.y = wp.y < bounds1.y ? bounds2.y : wp.y;
+		wp.x = wp.x > bounds2.x ? bounds1.x : wp.x;
+		wp.y = wp.y > bounds2.y ? bounds1.y : wp.y;
 	};
 
 	wp.addToLayer = function(pixiLayer) {
