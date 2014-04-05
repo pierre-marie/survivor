@@ -294,8 +294,8 @@
 					allExceptMe.position.x -= speed * Math.cos(me[playerId]['r']);
 			      	allExceptMe.position.y -= speed * Math.sin(me[playerId]['r']);
 			      	for (i in spaceParticles) {
-						spaceParticles[i].x -= backgroundSpeed * Math.cos(me[playerId]['r']);
-						spaceParticles[i].y -= backgroundSpeed * Math.sin(me[playerId]['r']);
+						spaceParticles[i].x -= spaceParticles[i].z * Math.cos(me[playerId]['r']);
+						spaceParticles[i].y -= spaceParticles[i].z * Math.sin(me[playerId]['r']);
 					}
 				}
 				if (me[playerId]['down']) {
@@ -304,8 +304,8 @@
 					allExceptMe.position.x += speed * Math.cos(me[playerId]['r']);
 					allExceptMe.position.y += speed * Math.sin(me[playerId]['r']);
 					for (i in spaceParticles) {
-						spaceParticles[i].x += backgroundSpeed * Math.cos(me[playerId]['r']);
-						spaceParticles[i].y += backgroundSpeed * Math.sin(me[playerId]['r']);
+						spaceParticles[i].x += spaceParticles[i].z * Math.cos(me[playerId]['r']);
+						spaceParticles[i].y += spaceParticles[i].z * Math.sin(me[playerId]['r']);
 					}
 				}
 				if (me[playerId]['b']) {
@@ -314,8 +314,8 @@
 					allExceptMe.position.x += speed * Math.cos(me[playerId]['r'] + (Math.PI/2));
 			       	allExceptMe.position.y += speed * Math.sin(me[playerId]['r'] + (Math.PI/2));
 			       	for (i in spaceParticles) {
-						spaceParticles[i].x += backgroundSpeed * Math.cos(me[playerId]['r'] + (Math.PI/2));
-						spaceParticles[i].y += backgroundSpeed * Math.sin(me[playerId]['r'] + (Math.PI/2));
+						spaceParticles[i].x += spaceParticles[i].z * Math.cos(me[playerId]['r'] + (Math.PI/2));
+						spaceParticles[i].y += spaceParticles[i].z * Math.sin(me[playerId]['r'] + (Math.PI/2));
 					}
 				}
 				if (me[playerId]['n']) {
@@ -324,8 +324,8 @@
 			      	allExceptMe.position.x += speed * Math.cos(me[playerId]['r'] - (Math.PI/2));
 			      	allExceptMe.position.y += speed * Math.sin(me[playerId]['r'] - (Math.PI/2));
 			      	for (i in spaceParticles) {
-						spaceParticles[i].x += backgroundSpeed * Math.cos(me[playerId]['r'] - (Math.PI/2));
-						spaceParticles[i].y += backgroundSpeed * Math.sin(me[playerId]['r'] - (Math.PI/2));
+						spaceParticles[i].x += spaceParticles[i].z * Math.cos(me[playerId]['r'] - (Math.PI/2));
+						spaceParticles[i].y += spaceParticles[i].z * Math.sin(me[playerId]['r'] - (Math.PI/2));
 					}
 				}
 
