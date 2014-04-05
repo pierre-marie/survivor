@@ -433,30 +433,30 @@
 						var b = ya - (a * xa);
 						
 						//y = 0
-						if ((b > 0) && (b <= $(window).width())) {
+						if ((yb < ya) && ((b > 0) && (b <= $(window).width()))) {
 							friendsIndicatorsContainer.children[i].position.x = b;
 							friendsIndicatorsContainer.children[i].position.y = 0;
 							friendsIndicatorsContainer.children[i].rotation = 0;
 						}
 						//y = $(window).height()
-						var testx = ($(window).height() / a) + b;
-						if ((testx > 0) && (testx <= $(window).width())) {
-							friendsIndicatorsContainer.children[i].position.x = testx;
-							friendsIndicatorsContainer.children[i].position.y = $(window).height();
-							friendsIndicatorsContainer.children[i].rotation = -Math.PI;
-						}
-						//x = 0
-						if ((b > 0) && (b <= $(window).height())) {
-							friendsIndicatorsContainer.children[i].position.x = 0;
-							friendsIndicatorsContainer.children[i].position.y = b;
-							friendsIndicatorsContainer.children[i].rotation = -(Math.PI/2);
-						}
-						//x = $(window).width()
-						if ((b > 0) && (b <= $(window).height())) {
-							friendsIndicatorsContainer.children[i].position.x = $(window).width();
-							friendsIndicatorsContainer.children[i].position.y = b;
-							friendsIndicatorsContainer.children[i].rotation = Math.PI/2;
-						}
+//						var testx = ($(window).height() / a) + b;
+//						if ((testx > 0) && (testx <= $(window).width())) {
+//							friendsIndicatorsContainer.children[i].position.x = testx;
+//							friendsIndicatorsContainer.children[i].position.y = $(window).height();
+//							friendsIndicatorsContainer.children[i].rotation = -Math.PI;
+//						}
+//						//x = 0
+//						if ((b > 0) && (b <= $(window).height())) {
+//							friendsIndicatorsContainer.children[i].position.x = 0;
+//							friendsIndicatorsContainer.children[i].position.y = b;
+//							friendsIndicatorsContainer.children[i].rotation = -(Math.PI/2);
+//						}
+//						//x = $(window).width()
+//						if ((b > 0) && (b <= $(window).height())) {
+//							friendsIndicatorsContainer.children[i].position.x = $(window).width();
+//							friendsIndicatorsContainer.children[i].position.y = b;
+//							friendsIndicatorsContainer.children[i].rotation = Math.PI/2;
+//						}
 				}
 			}
 
