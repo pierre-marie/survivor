@@ -20,13 +20,22 @@ var SpaceParticle = function() {
 		wp.y = wp.y > bounds[1].y ? bounds[0].y : wp.y;
 	};
 
-	wp.draw = function(context) {
+	wp.addToScene = function(pixiLayer) {
+
 		// Draw circle
-		context.fillStyle = 'rgba(226,219,226,'+wp.opacity+')';
+		//context.fillStyle = 'rgba(226,219,226,'+wp.opacity+')';
 		//context.fillStyle = '#fff';
-		context.beginPath();
-		context.arc(wp.x, wp.y, this.z * this.size, 0, Math.PI*2, true);
-		context.closePath();
-		context.fill();
+		//context.beginPath();
+		//context.arc(wp.x, wp.y, this.z * this.size, 0, Math.PI*2, true);
+		//context.closePath();
+		//context.fill();
+
+		var graphics = new PIXI.Graphics();
+		graphics.beginFill(0x00FF00);
+
+		graphics.drawCircle(wp.x, wp.y, Math.PI*2);
+
+		graphics.endFill();
+		pixiLayer.addChild(graphics);
 	};
 }
