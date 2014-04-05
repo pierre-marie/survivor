@@ -14,10 +14,18 @@ var SpaceParticle = function() {
 		}
 
 		// Wrap around screen
-		//wp.x = wp.x < bounds1.x ? bounds2.x : wp.x;
-		//wp.y = wp.y < bounds1.y ? bounds2.y : wp.y;
-		//wp.x = wp.x > bounds2.x ? bounds1.x : wp.x;
-		//wp.y = wp.y > bounds2.y ? bounds1.y : wp.y;
+		if (wp.x < 0) {
+			wp.x = w;
+		}
+		if (wp.x > w) {
+			wp.x = 0;
+		}
+		if (wp.y < 0) {
+			wp.y = h;
+		}
+		if (wp.y > h) {
+			wp.y = 0;
+		}
 	};
 
 	wp.addToLayer = function(pixiLayer) {
@@ -31,7 +39,7 @@ var SpaceParticle = function() {
 		//context.fill();
 
 		var graphics = new PIXI.Graphics();
-		graphics.beginFill(0x00FF00);
+		graphics.beginFill('rgba(226,219,226,'+wp.opacity+')');
 
 		graphics.drawCircle(wp.x, wp.y, this.z * this.size);
 
