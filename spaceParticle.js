@@ -4,7 +4,7 @@ var SpaceParticle = function() {
 	wp.x = 0;
 	wp.y = 0;
 	wp.z = Math.random() * 1 + 0.3;
-	wp.size = 1.2;
+	wp.size = 2.3;
 	wp.opacity = Math.random() * 0.8 + 0.1;
 
 	wp.update = function(w, h) {
